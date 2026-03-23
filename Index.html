@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sondage stratégique — Association Ambroise-Paré</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f1e35;--navy-l:#1a2f4a;--gold:#c9a84c;--gold-l:#e8c97a;--gold-p:#fdf6e3;--cream:#f8f5ef;--wht:#fff;--txt:#1a1a2e;--txt-l:#5a6575;--brd:#d5cfc0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);padding:36px 24px 28px;text-align:center}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--gold-l)}
+.hdr .sub{color:rgba(255,255,255,.5);font-size:12px;margin-top:6px;font-weight:300;letter-spacing:.04em}
+.hdr .intro{max-width:640px;margin:16px auto 0;color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
+.ctn{max-width:720px;margin:0 auto;padding:24px 20px 60px}
+.sh{background:var(--navy);color:var(--gold-l);padding:14px 20px;border-radius:10px 10px 0 0;margin-top:32px;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500}
+.sh span{font-size:11px;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+.qc{background:var(--wht);border:1px solid var(--brd);border-top:none;padding:24px 20px}
+.qc:last-child{border-radius:0 0 10px 10px}
+.qc+.qc{border-top:1px solid #eee}
+.qn{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.qt{font-size:15px;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.5}
+.qh{font-size:12px;color:var(--txt-l);margin-bottom:14px;font-style:italic}
+.opts{display:flex;flex-direction:column;gap:8px}
+.ol{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1.5px solid #e8e4dc;border-radius:8px;cursor:pointer;transition:all .15s;font-size:13px;line-height:1.5}
+.ol:hover{border-color:var(--gold);background:var(--gold-p)}
+.ol input[type="radio"]{margin-top:3px;accent-color:var(--navy);flex-shrink:0}
+.ol.sel{border-color:var(--navy);background:rgba(15,30,53,.04)}
+.lk-c{display:flex;flex-direction:column;gap:6px}
+.lk-l{display:flex;justify-content:space-between;font-size:11px;color:var(--txt-l);padding:0 4px;margin-bottom:4px}
+.lk-r{display:flex;gap:8px;justify-content:center}
+.lk-b{width:52px;height:44px;border:1.5px solid #e8e4dc;border-radius:8px;background:var(--wht);cursor:pointer;font-size:16px;font-weight:500;color:var(--txt-l);transition:all .15s;display:flex;align-items:center;justify-content:center}
+.lk-b:hover{border-color:var(--gold);background:var(--gold-p)}
+.lk-b.sel{border-color:var(--navy);background:var(--navy);color:var(--wht)}
+.mw{overflow-x:auto}
+.mx{width:100%;border-collapse:collapse;font-size:13px}
+.mx th{background:var(--navy);color:var(--gold-l);padding:10px 8px;font-weight:500;text-align:center;font-size:12px;letter-spacing:.04em}
+.mx th:first-child{text-align:left;min-width:200px;border-radius:6px 0 0 0}
+.mx th:last-child{border-radius:0 6px 0 0}
+.mx td{padding:10px 8px;border-bottom:1px solid #eee;vertical-align:middle}
+.mx td:first-child{font-weight:500;color:var(--navy);line-height:1.4}
+.mx td:not(:first-child){text-align:center}
+.mx tr:nth-child(even) td{background:rgba(245,240,232,.5)}
+.mx tr:hover td{background:var(--gold-p)}
+.mx input[type="radio"]{width:18px;height:18px;accent-color:var(--navy);cursor:pointer}
+.vd{display:block;font-weight:300;font-size:11px;color:var(--txt-l);margin-top:2px}
+.nm-sec{margin-top:32px;background:var(--wht);border:1px solid var(--brd);border-radius:10px;padding:24px 20px}
+.nm-sec label{font-size:14px;font-weight:500;color:var(--navy);display:block;margin-bottom:8px}
+.nm-sec input{width:100%;padding:10px 14px;border:1.5px solid #e8e4dc;border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif}
+.nm-sec input:focus{outline:none;border-color:var(--gold)}
+.cmt{margin-top:12px}
+.cmt textarea{width:100%;padding:8px 12px;border:1.5px solid #e8e4dc;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:36px;color:var(--txt-l)}
+.cmt textarea:focus{outline:none;border-color:var(--gold);color:var(--txt)}
+.cmt textarea::placeholder{font-style:italic;font-size:11px}
+.pb{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:1000;transition:width .3s}
+.sub-s{text-align:center;margin-top:36px}
+.sub-b{background:var(--navy);color:var(--gold-l);border:none;padding:14px 48px;font-size:15px;font-weight:500;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.sub-b:hover{background:var(--navy-l);transform:translateY(-1px);box-shadow:0 4px 20px rgba(15,30,53,.2)}
+.sub-b:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.sub-n{font-size:12px;color:var(--txt-l);margin-top:12px}
+.suc{display:none;text-align:center;padding:60px 24px}
+.suc h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--navy);margin-bottom:12px}
+.suc p{color:var(--txt-l);font-size:14px}
+.cnt{position:fixed;bottom:20px;right:20px;background:var(--navy);color:var(--gold-l);padding:8px 16px;border-radius:20px;font-size:12px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:100}
+.err{color:#c62828;font-size:13px;margin-top:8px;display:none}
+@media(max-width:600px){.hdr{padding:24px 16px 20px}.hdr h1{font-size:22px}.ctn{padding:16px 12px 40px}.qc{padding:18px 14px}.lk-b{width:44px;height:38px;font-size:14px}.mx td:first-child{min-width:160px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="pb" id="progress"></div>
+<header class="hdr">
+<h1>Sondage stratégique</h1>
+<div class="sub">Association Ambroise-Paré — Mars 2026 — Version de travail</div>
+<div class="intro">Ce sondage rapide (8 minutes) prépare le conseil d'administration du 2 avril.<br>Vos réponses seront synthétisées sans attribution individuelle.<br>Un espace de commentaire libre est disponible sous chaque question si vous souhaitez nuancer.</div>
+</header>
+<div class="ctn" id="fc">
+<div class="nm-sec">
+<label>Votre nom (pour le suivi — les résultats sont présentés sans attribution)</label>
+<input type="text" id="nom" placeholder="Prénom Nom">
+</div>
+
+<!-- T1 -->
+<div class="sh"><span>Thème 1</span>Ce qui nous fonde</div>
+<div class="qc">
+<div class="qn">Question 1</div>
+<div class="qt">Classez chaque valeur dans l'un des trois groupes.</div>
+<div class="qh">Maximum 4 valeurs dans « Essentielle » et 4 dans « Importante ». Le reste dans « Secondaire ».</div>
+<div class="mw"><table class="mx"><thead><tr><th>Valeur</th><th>Essentielle</th><th>Importante</th><th>Secondaire</th></tr></thead><tbody>
+<tr><td>V1 — L'humain avant le système<span class="vd">Chaque résident, étudiant, soignant est une fin en soi</span></td><td><input type="radio" name="v1" value="Essentielle"></td><td><input type="radio" name="v1" value="Importante"></td><td><input type="radio" name="v1" value="Secondaire"></td></tr>
+<tr><td>V2 — La compétence comme acte moral<span class="vd">Former sérieusement, c'est soigner sérieusement</span></td><td><input type="radio" name="v2" value="Essentielle"></td><td><input type="radio" name="v2" value="Importante"></td><td><input type="radio" name="v2" value="Secondaire"></td></tr>
+<tr><td>V3 — Un lieu de vie, pas un lieu d'attente<span class="vd">L'EHPAD ancré dans le quartier et le territoire</span></td><td><input type="radio" name="v3" value="Essentielle"></td><td><input type="radio" name="v3" value="Importante"></td><td><input type="radio" name="v3" value="Secondaire"></td></tr>
+<tr><td>V4 — L'exigence partagée<span class="vd">La qualité portée de l'intérieur, pas imposée</span></td><td><input type="radio" name="v4" value="Essentielle"></td><td><input type="radio" name="v4" value="Importante"></td><td><input type="radio" name="v4" value="Secondaire"></td></tr>
+<tr><td>V5 — L'engagement bénévole comme conviction<span class="vd">Gouverner pour servir un projet, pas un titre</span></td><td><input type="radio" name="v5" value="Essentielle"></td><td><input type="radio" name="v5" value="Importante"></td><td><input type="radio" name="v5" value="Secondaire"></td></tr>
+<tr><td>V6 — L'accompagnement du sens<span class="vd">La question du sens face à la fin de vie</span></td><td><input type="radio" name="v6" value="Essentielle"></td><td><input type="radio" name="v6" value="Importante"></td><td><input type="radio" name="v6" value="Secondaire"></td></tr>
+<tr><td>V7 — Une association qui expérimente<span class="vd">Reprendre les meilleures pratiques, montrer qu'on peut faire autrement</span></td><td><input type="radio" name="v7" value="Essentielle"></td><td><input type="radio" name="v7" value="Importante"></td><td><input type="radio" name="v7" value="Secondaire"></td></tr>
+<tr><td>V8 — La solidarité en actes<span class="vd">Soigner ceux qui en ont besoin, pas seulement ceux qui en ont les moyens</span></td><td><input type="radio" name="v8" value="Essentielle"></td><td><input type="radio" name="v8" value="Importante"></td><td><input type="radio" name="v8" value="Secondaire"></td></tr>
+<tr><td>V9 — Notre périmètre : la santé et le soin<span class="vd">L'identité sectorielle guide les choix de développement</span></td><td><input type="radio" name="v9" value="Essentielle"></td><td><input type="radio" name="v9" value="Importante"></td><td><input type="radio" name="v9" value="Secondaire"></td></tr>
+<tr><td>V10 — La cohérence valeurs / actes<span class="vd">Dire ce qu'on fait, faire ce qu'on dit</span></td><td><input type="radio" name="v10" value="Essentielle"></td><td><input type="radio" name="v10" value="Importante"></td><td><input type="radio" name="v10" value="Secondaire"></td></tr>
+<tr><td>V11 — L'indépendance par la force collective<span class="vd">Se structurer en groupe pour durer sans fusionner</span></td><td><input type="radio" name="v11" value="Essentielle"></td><td><input type="radio" name="v11" value="Importante"></td><td><input type="radio" name="v11" value="Secondaire"></td></tr>
+</tbody></table></div>
+<div class="cmt"><textarea id="cq1" placeholder="Commentaire libre sur le classement des valeurs..."></textarea></div>
+</div>
+
+<div class="qc">
+<div class="qn">Question 2</div>
+<div class="qt">Ce qui me rend le plus fier dans cette association, c'est :</div>
+<div class="opts">
+<label class="ol"><input type="radio" name="q2" value="Qualité accompagnement résidents"> La qualité de l'accompagnement des résidents</label>
+<label class="ol"><input type="radio" name="q2" value="Histoire centenaire et valeurs"> L'histoire centenaire et les valeurs fondatrices</label>
+<label class="ol"><input type="radio" name="q2" value="Compétence des équipes"> La compétence des équipes</label>
+<label class="ol"><input type="radio" name="q2" value="Indépendance"> Le fait d'être indépendant</label>
+<label class="ol"><input type="radio" name="q2" value="Lien soigner et former"> Le lien entre soigner et former</label>
+<label class="ol"><input type="radio" name="q2" value="Engagement CA et bénévoles"> L'engagement du CA et des bénévoles</label>
+</div>
+<div class="cmt"><textarea id="cq2" placeholder="Commentaire libre..."></textarea></div>
+</div>
+
+<!-- T2 -->
+<div class="sh"><span>Thème 2</span>Notre identité</div>
+<div class="qc"><div class="qn">Question 3</div><div class="qt">L'accompagnement spirituel des résidents devrait être :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q3" value="Ancré tradition protestante, ouvert"> Ancré dans la tradition protestante, ouvert aux autres</label><label class="ol"><input type="radio" name="q3" value="Ouvert toutes confessions"> Ouvert à toutes confessions sans référence particulière</label><label class="ol"><input type="radio" name="q3" value="Proposé mais pas formalisé"> Proposé mais pas formalisé</label><label class="ol"><input type="radio" name="q3" value="Pas le rôle de l'EHPAD"> Ce n'est pas le rôle de l'EHPAD</label></div>
+<div class="cmt"><textarea id="cq3" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 4</div><div class="qt">Concernant l'identité protestante de l'association :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q4" value="Rester et conditionner partenaires"> Elle doit rester dans les statuts et conditionner le choix des partenaires</label><label class="ol"><input type="radio" name="q4" value="Rester sans empêcher partenariats"> Elle doit rester dans les statuts mais ne doit pas empêcher des partenariats non confessionnels</label><label class="ol"><input type="radio" name="q4" value="Évoluer pour s'adapter"> Elle pourrait évoluer dans les statuts pour s'adapter aux réalités d'aujourd'hui</label><label class="ol"><input type="radio" name="q4" value="Héritage, pas critère de décision"> C'est un héritage historique, pas un critère de décision</label></div>
+<div class="cmt"><textarea id="cq4" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 5</div><div class="qt">Le prochain président de l'association devrait être :</div><div class="qh">Cette question est volontairement directe — elle permet de clarifier un point qui conditionne le recrutement.</div>
+<div class="opts"><label class="ol"><input type="radio" name="q5" value="Obligatoirement protestant"> Obligatoirement protestant, conformément aux statuts</label><label class="ol"><input type="radio" name="q5" value="De préférence protestant"> De préférence protestant mais pas obligatoirement</label><label class="ol"><input type="radio" name="q5" value="Compétences, quelle que soit confession"> Choisi uniquement sur ses compétences, quelle que soit sa confession</label></div>
+<div class="cmt"><textarea id="cq5" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T3 -->
+<div class="sh"><span>Thème 3</span>Nos deux structures</div>
+<div class="qc"><div class="qn">Question 6</div><div class="qt">Le lien entre l'EHPAD et l'IFSI au sein de la même association :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q6" value="Atout stratégique à renforcer"> Est un atout stratégique majeur qu'il faut renforcer</label><label class="ol"><input type="radio" name="q6" value="Atout sans effort particulier"> Est un atout mais qui fonctionne sans effort particulier</label><label class="ol"><input type="radio" name="q6" value="Existe sur le papier seulement"> Existe surtout sur le papier, pas dans la pratique quotidienne</label><label class="ol"><input type="radio" name="q6" value="Pas déterminant pour l'avenir"> N'est pas déterminant pour l'avenir de chaque structure</label></div>
+<div class="cmt"><textarea id="cq6" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 7</div><div class="qt">Par quoi l'association devrait-elle commencer :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q7" value="Projet associatif et valeurs"> Formaliser un projet associatif et des valeurs partagées</label><label class="ol"><input type="radio" name="q7" value="Rapprochement sans attendre"> Engager un rapprochement avec d'autres structures sans attendre</label><label class="ol"><input type="radio" name="q7" value="Renforcer le CA d'abord"> Renforcer le CA et la gouvernance d'abord</label><label class="ol"><input type="radio" name="q7" value="Chiffrer les scénarios financiers"> Chiffrer les scénarios financiers avant toute décision</label></div>
+<div class="cmt"><textarea id="cq7" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T4 -->
+<div class="sh"><span>Thème 4</span>Notre gouvernance</div>
+<div class="qc"><div class="qn">Question 8</div><div class="qt">Le recrutement de nouveaux administrateurs est urgent.</div>
+<div class="lk-c"><div class="lk-l"><span>1 — Pas urgent</span><span>5 — Priorité absolue</span></div><div class="lk-r">
+<button class="lk-b" data-q="q8" data-v="1">1</button><button class="lk-b" data-q="q8" data-v="2">2</button><button class="lk-b" data-q="q8" data-v="3">3</button><button class="lk-b" data-q="q8" data-v="4">4</button><button class="lk-b" data-q="q8" data-v="5">5</button>
+</div></div>
+<div class="cmt"><textarea id="cq8" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 9</div><div class="qt">Le fonctionnement actuel du CA est adapté aux défis des 5 prochaines années.</div>
+<div class="lk-c"><div class="lk-l"><span>1 — Pas du tout adapté</span><span>5 — Tout à fait adapté</span></div><div class="lk-r">
+<button class="lk-b" data-q="q9" data-v="1">1</button><button class="lk-b" data-q="q9" data-v="2">2</button><button class="lk-b" data-q="q9" data-v="3">3</button><button class="lk-b" data-q="q9" data-v="4">4</button><button class="lk-b" data-q="q9" data-v="5">5</button>
+</div></div>
+<div class="cmt"><textarea id="cq9" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 10</div><div class="qt">Je suis prêt à m'investir davantage dans la gouvernance de l'association dans les prochains mois.</div>
+<div class="opts"><label class="ol"><input type="radio" name="q10" value="D'accord"> D'accord</label><label class="ol"><input type="radio" name="q10" value="Pas d'accord"> Pas d'accord</label><label class="ol"><input type="radio" name="q10" value="À discuter"> À discuter</label></div>
+<div class="cmt"><textarea id="cq10" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T5 -->
+<div class="sh"><span>Thème 5</span>Notre avenir</div>
+<div class="qc"><div class="qn">Question 11</div><div class="qt">Les décisions structurantes pour l'avenir doivent être prises :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q11" value="Dans les 6 prochains mois"> Dans les 6 prochains mois</label><label class="ol"><input type="radio" name="q11" value="Dans les 12 prochains mois"> Dans les 12 prochains mois</label><label class="ol"><input type="radio" name="q11" value="Dans les 2-3 prochaines années"> Dans les 2-3 prochaines années</label><label class="ol"><input type="radio" name="q11" value="Pas d'urgence"> Il n'y a pas d'urgence</label></div>
+<div class="cmt"><textarea id="cq11" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 12</div><div class="qt">Dans un groupement, l'association devrait privilégier :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q12" value="Même secteur, mêmes valeurs"> Des structures du même secteur (EHPAD/IFSI) partageant les mêmes valeurs</label><label class="ol"><input type="radio" name="q12" value="Structures protestantes ou chrétiennes"> Des structures protestantes ou d'inspiration chrétienne</label><label class="ol"><input type="radio" name="q12" value="Territoire lillois, toute identité"> Des structures du territoire lillois, quelle que soit leur identité</label><label class="ol"><input type="radio" name="q12" value="Pas le bon moment"> Ce n'est pas le bon moment pour en parler</label></div>
+<div class="cmt"><textarea id="cq12" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 13</div><div class="qt">Si l'une des deux directrices quittait l'association demain, l'impact serait :</div>
+<div class="lk-c"><div class="lk-l"><span>1 — Gérable sans difficulté majeure</span><span>5 — Critique pour la survie</span></div><div class="lk-r">
+<button class="lk-b" data-q="q13" data-v="1">1</button><button class="lk-b" data-q="q13" data-v="2">2</button><button class="lk-b" data-q="q13" data-v="3">3</button><button class="lk-b" data-q="q13" data-v="4">4</button><button class="lk-b" data-q="q13" data-v="5">5</button>
+</div></div>
+<div class="cmt"><textarea id="cq13" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T6 -->
+<div class="sh"><span>Thème 6</span>Cette démarche</div>
+<div class="qc"><div class="qn">Question 14</div><div class="qt">Ce qui serait le plus utile pour la suite de la mission :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q14" value="Continuer même rythme"> Continuer l'accompagnement au même rythme</label><label class="ol"><input type="radio" name="q14" value="Accélérer mandat opérationnel"> Accélérer avec un mandat plus opérationnel</label><label class="ol"><input type="radio" name="q14" value="Ralentir, laisser digérer"> Ralentir et laisser le CA digérer</label><label class="ol"><input type="radio" name="q14" value="Mission atteinte, pas de suite"> La mission a atteint son objectif, pas besoin de prolonger</label></div>
+<div class="cmt"><textarea id="cq14" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 15</div><div class="qt">Si l'association n'existait plus demain, ce qui manquerait le plus au territoire :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q15" value="Qualité accompagnement résidents"> La qualité de l'accompagnement des résidents</label><label class="ol"><input type="radio" name="q15" value="Lieu de formation, valeurs humaines"> Un lieu de formation ancré dans des valeurs humaines</label><label class="ol"><input type="radio" name="q15" value="Employeur engagé"> Un employeur engagé pour ses équipes</label><label class="ol"><input type="radio" name="q15" value="Acteur associatif indépendant"> Un acteur associatif indépendant sur le territoire</label><label class="ol"><input type="radio" name="q15" value="Rien d'irremplaçable"> Rien de vraiment irremplaçable</label></div>
+<div class="cmt"><textarea id="cq15" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="sub-s">
+<button class="sub-b" id="submitBtn" onclick="submitToAirtable()">Envoyer mes réponses</button>
+<div class="sub-n">Vos réponses sont envoyées directement et de façon sécurisée.</div>
+<div class="err" id="errMsg"></div>
+</div>
+</div>
+<div class="suc" id="suc"><h2>Merci pour vos réponses.</h2><p>Elles seront synthétisées et présentées au conseil d'administration du 2 avril.<br>Vous pouvez fermer cette page.</p></div>
+<div class="cnt" id="cnt">0 / 15</div>
+<script>
+const AIRTABLE_PAT='patdyq6QsSdCbJcSi.c8853671446f278320dd55e6e5be16fc5254fbb0d1990a7b455089af7acfc380';
+const BASE_ID='appRJuqEy9HyLaWZ3';
+const TABLE_ID='tblXysny94r1rhG6U';
+const F={
+nom:'fldCbhmXCU0lFkl3o',
+v1:'fldfUMSKbQLk7Smhe',v2:'flddIeAanZooqo53C',v3:'fldFnNZmjnWP5aO9f',
+v4:'fld21DThOzbcZE3AD',v5:'fldICHKBcGBbOvRik',v6:'flddCGEtgTsEqEDYk',
+v7:'fldpDCg2S5WKVthNS',v8:'fldDt0e9gOUiMudEi',v9:'fld2ImRyMbo1Z9Opu',
+v10:'fldMtQqSIUFreHAtr',v11:'fld6aAVOpWxrbvBPc',
+q2:'fld1vqDFSLH6Ve6j6',q3:'fldsJz0fVUtwjvtQ9',q4:'fldZLkWvaED0sIrGm',
+q5:'fldKEL88WvsmxhKmF',q6:'fldAU9kQgwEVRkJJI',q7:'fldBNYRWnbQq2dQSA',
+q8:'fldWXpbTaYIRUmmPF',q9:'fldbsO2LhIS94bCgW',q10:'fldk5L71cyyizKxjh',
+q11:'fldbw9FIF1RQcSsnk',q12:'fldu3pTv7yh4GVdQa',q13:'fldoc4vuH9UICt6y8',
+q14:'fldPfqSPihxN8WYiX',q15:'fldLLTvUldDGeDWE0',
+cmtAll:'fldLsYx7oTUL9NO36',
+date:'fldcJZeH1CXhoHbHs'
+};
+const LS={};
+document.querySelectorAll('.ol input[type="radio"]').forEach(r=>{r.addEventListener('change',function(){this.closest('.opts').querySelectorAll('.ol').forEach(l=>l.classList.remove('sel'));this.closest('.ol').classList.add('sel');uc()})});
+document.querySelectorAll('.lk-b').forEach(b=>{b.addEventListener('click',function(){const q=this.dataset.q;LS[q]=parseInt(this.dataset.v);document.querySelectorAll(`.lk-b[data-q="${q}"]`).forEach(x=>x.classList.remove('sel'));this.classList.add('sel');uc()})});
+document.querySelectorAll('.mx input[type="radio"]').forEach(r=>r.addEventListener('change',uc));
+function uc(){let a=0;['q2','q3','q4','q5','q6','q7','q10','q11','q12','q14','q15'].forEach(n=>{if(document.querySelector(`input[name="${n}"]:checked`))a++});['q8','q9','q13'].forEach(n=>{if(LS[n])a++});let m=0;for(let i=1;i<=11;i++){if(document.querySelector(`input[name="v${i}"]:checked`))m++}if(m===11)a++;document.getElementById('cnt').textContent=a+' / 15';document.getElementById('progress').style.width=(a/15*100)+'%'}
+async function submitToAirtable(){
+const btn=document.getElementById('submitBtn'),err=document.getElementById('errMsg');err.style.display='none';
+const nom=document.getElementById('nom').value.trim();
+if(!nom){err.textContent='Merci d\'indiquer votre nom.';err.style.display='block';return}
+btn.disabled=true;btn.textContent='Envoi en cours...';
+const g=n=>{const s=document.querySelector(`input[name="${n}"]:checked`);return s?s.value:null};
+const fields={};
+fields[F.nom]=nom;fields[F.date]=new Date().toISOString();
+for(let i=1;i<=11;i++){const v=g('v'+i);if(v)fields[F['v'+i]]=v}
+['q2','q3','q4','q5','q6','q7','q10','q11','q12','q14','q15'].forEach(n=>{const v=g(n);if(v)fields[F[n]]=v});
+['q8','q9','q13'].forEach(n=>{if(LS[n])fields[F[n]]=LS[n]});
+const cmts=[];
+for(let i=1;i<=15;i++){const el=document.getElementById('cq'+i);if(el&&el.value.trim()){cmts.push('Q'+i+': '+el.value.trim())}}
+if(cmts.length)fields[F.cmtAll]=cmts.join('\n---\n');
+try{
+const res=await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`,{method:'POST',headers:{'Authorization':`Bearer ${AIRTABLE_PAT}`,'Content-Type':'application/json'},body:JSON.stringify({records:[{fields}]})});
+if(!res.ok){const d=await res.json();throw new Error(d.error?.message||'Erreur')}
+document.getElementById('fc').style.display='none';document.getElementById('cnt').style.display='none';document.getElementById('suc').style.display='block';
+}catch(e){err.textContent='Erreur : '+e.message;err.style.display='block';btn.disabled=false;btn.textContent='Envoyer mes réponses'}}
+</script>
+</body>
+</html>
