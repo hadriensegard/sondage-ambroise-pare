@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résultats — Sondage stratégique Ambroise-Paré</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f1e35;--navy-l:#1a2f4a;--gold:#c9a84c;--gold-l:#e8c97a;--gold-p:#fdf6e3;--cream:#f8f5ef;--wht:#fff;--txt:#1a1a2e;--txt-l:#5a6575;--brd:#d5cfc0;--green:#2d7a4f;--green-l:#e8f5e9;--orange:#c97a1c;--orange-l:#fff3e0;--red:#b44d4d;--red-l:#ffebee}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);padding:36px 24px 28px;text-align:center}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--gold-l)}
+.hdr .sub{color:rgba(255,255,255,.5);font-size:12px;margin-top:6px;font-weight:300;letter-spacing:.04em}
+.hdr .intro{max-width:640px;margin:16px auto 0;color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
+.ctn{max-width:800px;margin:0 auto;padding:24px 20px 60px}
+
+/* Counter bar */
+.cbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:24px;padding:16px 20px;background:var(--wht);border-radius:10px;border:1px solid var(--brd)}
+.cbar-left{display:flex;align-items:center;gap:12px}
+.cbar-count{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--navy)}
+.cbar-label{font-size:12px;color:var(--txt-l);line-height:1.3}
+.cbar-bar{flex:1;min-width:120px;height:8px;background:#e8e4dc;border-radius:4px;overflow:hidden}
+.cbar-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s}
+.refresh-btn{background:var(--navy);color:var(--gold-l);border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.refresh-btn:hover{background:var(--navy-l)}
+
+/* Filters */
+.filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.fbtn{padding:8px 16px;border:1.5px solid var(--brd);border-radius:20px;background:var(--wht);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;color:var(--txt-l)}
+.fbtn:hover{border-color:var(--gold)}
+.fbtn.active{background:var(--navy);color:var(--gold-l);border-color:var(--navy)}
+
+/* Sections */
+.sh{background:var(--navy);color:var(--gold-l);padding:14px 20px;border-radius:10px 10px 0 0;margin-top:32px;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500}
+.sh span{font-size:11px;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+.hint{font-size:11px;color:var(--txt-l);font-style:italic;padding:12px 20px;background:var(--gold-p);border:1px solid var(--brd);border-top:none}
+
+/* Value heatmap */
+.vmap{background:var(--wht);border:1px solid var(--brd);border-top:none;overflow-x:auto;border-radius:0 0 10px 10px}
+.vmap table{width:100%;border-collapse:collapse;font-size:13px}
+.vmap th{padding:10px 8px;font-weight:500;text-align:center;font-size:11px;letter-spacing:.04em;color:var(--txt-l);border-bottom:1px solid var(--brd);white-space:nowrap}
+.vmap th:first-child{text-align:left;min-width:180px;padding-left:16px}
+.vmap td{padding:8px;text-align:center;border-bottom:1px solid #f0ebe3;font-size:12px;font-weight:500}
+.vmap td:first-child{text-align:left;color:var(--navy);font-weight:500;padding-left:16px}
+.vmap tr:hover td{background:var(--gold-p)}
+.ve{background:var(--green-l);color:var(--green)}
+.vi{background:#fff8e1;color:var(--orange)}
+.vs{background:#f5f5f5;color:#999}
+.vn{color:#ddd}
+
+/* Question cards */
+.qcard{background:var(--wht);border:1px solid var(--brd);border-top:none;padding:20px}
+.qcard:last-of-type{border-radius:0 0 10px 10px}
+.qcard+.qcard{border-top:1px solid #eee}
+.qcard-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:12px}
+.qcard-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;margin-left:8px;font-weight:400}
+.tag-conv{background:var(--green-l);color:var(--green)}
+.tag-div{background:var(--orange-l);color:var(--orange)}
+.tag-strong{background:var(--red-l);color:var(--red)}
+
+/* Response chips */
+.resp-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;font-size:12px;border:1px solid #e8e4dc}
+.chip-name{font-weight:500;color:var(--navy);font-size:11px;min-width:24px}
+.chip-val{color:var(--txt)}
+.chip-ca{border-left:3px solid #4a90d9}
+.chip-dir{border-left:3px solid var(--green)}
+.chip-sal{border-left:3px solid var(--orange)}
+
+/* Rating bars */
+.rbar{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.rbar-name{font-size:11px;font-weight:500;color:var(--navy);min-width:24px}
+.rbar-track{flex:1;height:24px;background:#f0ebe3;border-radius:4px;position:relative;max-width:200px}
+.rbar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:11px;font-weight:600;color:var(--wht)}
+.rbar-1{background:#e57373;width:20%}.rbar-2{background:#ffb74d;width:40%}.rbar-3{background:#ffd54f;width:60%;color:var(--txt)}.rbar-4{background:#81c784;width:80%}.rbar-5{background:var(--green);width:100%}
+
+/* Anon toggle */
+.anon-area{text-align:center;margin-top:32px;padding:20px;background:var(--wht);border:1px solid var(--brd);border-radius:10px}
+.anon-area p{font-size:12px;color:var(--txt-l);margin-bottom:8px}
+.pwd-input{padding:8px 12px;border:1.5px solid #e8e4dc;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;width:200px}
+.pwd-input:focus{outline:none;border-color:var(--gold)}
+.pwd-btn{background:var(--navy);color:var(--gold-l);border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:8px}
+
+.loading{text-align:center;padding:60px;color:var(--txt-l);font-size:14px}
+.empty{text-align:center;padding:20px;color:var(--txt-l);font-size:13px;font-style:italic}
+.foot{text-align:center;margin-top:24px;font-size:11px;color:var(--txt-l)}
+
+@media(max-width:600px){
+.hdr{padding:24px 16px 20px}.hdr h1{font-size:22px}.ctn{padding:16px 12px 40px}
+.cbar{flex-direction:column;align-items:stretch}.cbar-left{justify-content:center}
+.filters{justify-content:center}.chip{font-size:11px;padding:5px 8px}
+.vmap th:first-child{min-width:140px}.vmap td:first-child{font-size:11px}
+.rbar-track{max-width:140px}
+}
+</style>
+</head>
+<body>
+<header class="hdr">
+<h1>Résultats du sondage stratégique</h1>
+<div class="sub">Association Ambroise-Paré — Mars 2026</div>
+<div class="intro">Synthèse en temps réel des réponses au questionnaire stratégique.<br>Les résultats se mettent à jour automatiquement à chaque nouvelle réponse.</div>
+</header>
+<div class="ctn">
+<div class="loading" id="loading">Chargement des résultats...</div>
+<div id="dashboard" style="display:none">
+
+<!-- Counter -->
+<div class="cbar">
+<div class="cbar-left">
+<div class="cbar-count" id="count">0</div>
+<div class="cbar-label">réponses<br>reçues</div>
+</div>
+<div class="cbar-bar"><div class="cbar-fill" id="bar"></div></div>
+<button class="refresh-btn" onclick="loadData()">↻ Actualiser</button>
+</div>
+
+<!-- Filters -->
+<div class="filters">
+<button class="fbtn active" data-f="all" onclick="setFilter('all',this)">Tous</button>
+<button class="fbtn" data-f="ca" onclick="setFilter('ca',this)">CA</button>
+<button class="fbtn" data-f="dir" onclick="setFilter('dir',this)">Directrices</button>
+<button class="fbtn" data-f="sal" onclick="setFilter('sal',this)">Salariés</button>
+</div>
+
+<!-- S1: Values -->
+<div class="sh"><span>Thème 1</span>Carte des valeurs</div>
+<div class="hint">Chaque cellule indique le classement choisi par le répondant. Les convergences apparaissent quand tous choisissent la même catégorie.</div>
+<div class="vmap" id="vmap"></div>
+
+<!-- S2: Strategic questions -->
+<div class="sh"><span>Thème 2</span>Vision stratégique</div>
+<div class="hint">Les réponses sont comparées entre profils. 🟢 = convergence, 🟠 = divergence, 🔴 = divergence forte.</div>
+<div id="strategic"></div>
+
+<!-- S3: Ratings -->
+<div class="sh"><span>Thème 3</span>Évaluations (échelle 1-5)</div>
+<div class="hint">Chaque barre représente la note d'un répondant. Plus la barre est longue, plus la note est élevée.</div>
+<div id="ratings"></div>
+
+<!-- S4: New questions (directrices only) -->
+<div class="sh"><span>Thème 4</span>Synthèse — nouvelles questions</div>
+<div class="hint">Ces questions n'ont été posées qu'aux directrices et salariés. Elles apparaîtront ici dès réception des réponses.</div>
+<div id="newqs"></div>
+
+<!-- Admin -->
+<div id="admin-toggle" style="position:fixed;bottom:12px;right:12px;z-index:100">
+<span id="admin-link" style="font-size:11px;color:var(--txt-l);cursor:pointer;opacity:0.4;user-select:none" onclick="showAdmin()">admin</span>
+</div>
+<div id="admin-box" style="display:none;position:fixed;bottom:40px;right:12px;background:var(--wht);border:1px solid var(--brd);border-radius:8px;padding:12px;box-shadow:0 4px 16px rgba(0,0,0,.15);z-index:101">
+<input type="password" class="pwd-input" id="pwd" placeholder="Code" style="width:120px;font-size:12px;padding:6px 8px">
+<button class="pwd-btn" onclick="toggleAnon()" style="font-size:11px;padding:6px 12px">OK</button>
+</div>
+
+<div class="foot" id="foot"></div>
+</div>
+</div>
+
+<script>
+const PAT='patdyq6QsSdCbJcSi.c8853671446f278320dd55e6e5be16fc5254fbb0d1990a7b455089af7acfc380';
+const BASE='appRJuqEy9HyLaWZ3';
+const CA_T='tblXysny94r1rhG6U';
+const DIR_T='tblRwVztaSXu6bkDP';
+const PWD='hadrien2026';
+
+let records=[],dirRecords=[],anon=true,filter='all';
+
+const VALS=[
+{id:'fldfUMSKbQLk7Smhe',label:'V1 — L\'humain avant le système'},
+{id:'flddIeAanZooqo53C',label:'V2 — Compétence comme acte moral'},
+{id:'fldFnNZmjnWP5aO9f',label:'V3 — Lieu de vie'},
+{id:'fld21DThOzbcZE3AD',label:'V4 — Exigence partagée'},
+{id:'fldICHKBcGBbOvRik',label:'V5 — Engagement bénévole'},
+{id:'flddCGEtgTsEqEDYk',label:'V6 — Accompagnement du sens'},
+{id:'fldpDCg2S5WKVthNS',label:'V7 — Expérimenter'},
+{id:'fldDt0e9gOUiMudEi',label:'V8 — Solidarité en actes'},
+{id:'fld2ImRyMbo1Z9Opu',label:'V9 — Santé et soin'},
+{id:'fldMtQqSIUFreHAtr',label:'V10 — Cohérence valeurs/actes'},
+{id:'fld6aAVOpWxrbvBPc',label:'V11 — Indépendance'}
+];
+
+const STRAT=[
+{id:'fld1vqDFSLH6Ve6j6',title:'Ce qui rend le plus fier'},
+{id:'fldsJz0fVUtwjvtQ9',title:'Accompagnement spirituel'},
+{id:'fldZLkWvaED0sIrGm',title:'Identité protestante dans les statuts'},
+{id:'fldKEL88WvsmxhKmF',title:'Prochain président'},
+{id:'fldAU9kQgwEVRkJJI',title:'Lien EHPAD-IFSI'},
+{id:'fldBNYRWnbQq2dQSA',title:'Par quoi commencer'},
+{id:'fldu3pTv7yh4GVdQa',title:'Type de groupement'},
+{id:'fldbw9FIF1RQcSsnk',title:'Urgence temporelle'},
+{id:'fldk5L71cyyizKxjh',title:'Investissement personnel'},
+{id:'fldPfqSPihxN8WYiX',title:'Suite de la mission'},
+{id:'fldLLTvUldDGeDWE0',title:'Si l\'association disparaissait'}
+];
+
+const RATINGS=[
+{id:'fldWXpbTaYIRUmmPF',title:'Urgence renouvellement CA',lo:'Pas urgent',hi:'Priorité absolue'},
+{id:'fldbsO2LhIS94bCgW',title:'Gouvernance adaptée aux enjeux',lo:'Pas adapté',hi:'Tout à fait'},
+{id:'fldoc4vuH9UICt6y8',title:'Impact si départ d\'une directrice',lo:'Gérable',hi:'Critique'}
+];
+
+const NEWQS=[
+{id:'fldJMDltsclgCHvGN',title:'Situation stratégique actuelle'},
+{id:'fldOvTfF8OPI4IgAm',title:'Identité intériorisée (expliquer à un proche)'},
+{id:'fld2bxylEit0Qp1Kc',title:'Un mot pour décrire l\'association'}
+];
+
+function profil(r){const p=r.cellValuesByFieldId?.fldGXHqMZ8ognNIw2;return p?.name||'Administrateur CA'}
+function profilClass(r){const p=profil(r);if(p.includes('Directrice'))return'dir';if(p.includes('Salarié'))return'sal';return'ca'}
+function name(r){
+if(anon){const p=profil(r);const pc=profilClass(r);const idx=records.filter(x=>profilClass(x)===pc).indexOf(r)+1;
+if(pc==='ca')return'CA'+idx;if(pc==='dir')return'Dir'+idx;return'Sal'+idx;}
+return r.cellValuesByFieldId?.fldCbhmXCU0lFkl3o||'?';
+}
+function chipClass(r){return'chip-'+profilClass(r)}
+function val(r,fid){const v=r.cellValuesByFieldId?.[fid];if(!v)return null;if(typeof v==='object')return v.name;return v}
+function filtered(){if(filter==='all')return records;return records.filter(r=>profilClass(r)===filter)}
+
+async function loadData(){
+try{
+const h={'Authorization':'Bearer '+PAT};
+const res=await fetch(`https://api.airtable.com/v0/${BASE}/${CA_T}`,{headers:h});
+if(!res.ok){const e=await res.text();console.error('CA fetch error:',res.status,e);document.getElementById('loading').textContent='Erreur de chargement ('+res.status+')';return}
+const d=await res.json();records=d.records||[];
+try{
+const res2=await fetch(`https://api.airtable.com/v0/${BASE}/${DIR_T}`,{headers:h});
+if(res2.ok){const d2=await res2.json();dirRecords=d2.records||[]}
+}catch(e2){console.warn('Dir table fetch failed:',e2)}
+render();
+}catch(e){console.error('Load error:',e);document.getElementById('loading').innerHTML='<strong>Ce fichier doit être consulté en ligne.</strong><br><span style="font-size:12px;color:var(--txt-l)">Publiez-le sur GitHub Pages puis ouvrez le lien https://hadriensegard.github.io/...</span>'}
+}
+
+function render(){
+document.getElementById('loading').style.display='none';
+document.getElementById('dashboard').style.display='block';
+const recs=filtered();
+document.getElementById('count').textContent=records.length;
+document.getElementById('bar').style.width=(records.length/10*100)+'%';
+document.getElementById('foot').textContent='Dernière actualisation : '+new Date().toLocaleString('fr-FR');
+renderValues(recs);renderStrategic(recs);renderRatings(recs);renderNew(recs);
+}
+
+function renderValues(recs){
+const el=document.getElementById('vmap');
+if(!recs.length){el.innerHTML='<div class="empty">Aucune réponse pour ce filtre.</div>';return}
+let h='<table><thead><tr><th>Valeur</th>';
+recs.forEach(r=>{h+='<th>'+name(r)+'</th>'});
+h+='</tr></thead><tbody>';
+VALS.forEach(v=>{
+h+='<tr><td>'+v.label+'</td>';
+recs.forEach(r=>{
+const x=val(r,v.id);
+if(!x)h+='<td class="vn">—</td>';
+else if(x==='Essentielle')h+='<td class="ve">Essentielle</td>';
+else if(x==='Importante')h+='<td class="vi">Importante</td>';
+else h+='<td class="vs">Secondaire</td>';
+});
+h+='</tr>';});
+h+='</tbody></table>';el.innerHTML=h;
+}
+
+function renderStrategic(recs){
+const el=document.getElementById('strategic');
+if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse pour ce filtre.</div>';return}
+let h='';
+STRAT.forEach(q=>{
+const answers=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
+if(!answers.length)return;
+const unique=new Set(answers.map(a=>a.v));
+let tag='';
+if(unique.size===1)tag='<span class="qcard-tag tag-conv">Convergence</span>';
+else if(unique.size===2)tag='<span class="qcard-tag tag-div">Divergence</span>';
+else if(unique.size>=3)tag='<span class="qcard-tag tag-strong">Divergence forte</span>';
+h+='<div class="qcard"><div class="qcard-title">'+q.title+tag+'</div><div class="resp-row">';
+answers.forEach(a=>{h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span><span class="chip-val">'+a.v+'</span></div>'});
+h+='</div></div>';});
+el.innerHTML=h||'<div class="qcard empty">Aucune réponse disponible.</div>';
+}
+
+function renderRatings(recs){
+const el=document.getElementById('ratings');
+if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse pour ce filtre.</div>';return}
+let h='';
+RATINGS.forEach(q=>{
+const answers=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
+if(!answers.length)return;
+h+='<div class="qcard"><div class="qcard-title">'+q.title+'</div>';
+h+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--txt-l);margin-bottom:8px"><span>'+q.lo+'</span><span>'+q.hi+'</span></div>';
+answers.forEach(a=>{
+const v=parseInt(a.v)||0;
+h+='<div class="rbar"><span class="rbar-name">'+a.n+'</span><div class="rbar-track"><div class="rbar-fill rbar-'+v+'">'+v+'/5</div></div></div>';
+});
+h+='</div>';});
+el.innerHTML=h||'<div class="qcard empty">Aucune réponse disponible.</div>';
+}
+
+function renderNew(recs){
+const el=document.getElementById('newqs');
+const answers=recs.filter(r=>NEWQS.some(q=>val(r,q.id)));
+if(!answers.length){el.innerHTML='<div class="qcard empty">En attente des réponses des directrices et salariés.</div>';return}
+let h='';
+NEWQS.forEach(q=>{
+const ans=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
+if(!ans.length)return;
+h+='<div class="qcard"><div class="qcard-title">'+q.title+'</div><div class="resp-row">';
+ans.forEach(a=>{h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span><span class="chip-val">'+a.v+'</span></div>'});
+h+='</div></div>';});
+el.innerHTML=h;
+}
+
+function setFilter(f,btn){
+filter=f;
+document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+render();
+}
+
+function toggleAnon(){
+const p=document.getElementById('pwd').value;
+if(p===PWD){anon=!anon;render();document.getElementById('pwd').value='';
+document.getElementById('admin-box').style.display='none';
+document.getElementById('admin-link').textContent=anon?'admin':'✓ noms visibles';
+document.getElementById('admin-link').style.opacity=anon?'0.4':'1';
+}else{alert('Code incorrect.')}
+}
+function showAdmin(){
+const box=document.getElementById('admin-box');
+box.style.display=box.style.display==='none'?'block':'none';
+}
+
+loadData();
+</script>
+</body>
+</html>
