@@ -14,8 +14,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);f
 .hdr .sub{color:rgba(255,255,255,.5);font-size:12px;margin-top:6px;font-weight:300;letter-spacing:.04em}
 .hdr .intro{max-width:640px;margin:16px auto 0;color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
 .ctn{max-width:800px;margin:0 auto;padding:24px 20px 60px}
-
-/* Counter bar */
 .cbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:24px;padding:16px 20px;background:var(--wht);border-radius:10px;border:1px solid var(--brd)}
 .cbar-left{display:flex;align-items:center;gap:12px}
 .cbar-count{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--navy)}
@@ -24,19 +22,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);f
 .cbar-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s}
 .refresh-btn{background:var(--navy);color:var(--gold-l);border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
 .refresh-btn:hover{background:var(--navy-l)}
-
-/* Filters */
 .filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
 .fbtn{padding:8px 16px;border:1.5px solid var(--brd);border-radius:20px;background:var(--wht);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;color:var(--txt-l)}
 .fbtn:hover{border-color:var(--gold)}
 .fbtn.active{background:var(--navy);color:var(--gold-l);border-color:var(--navy)}
-
-/* Sections */
 .sh{background:var(--navy);color:var(--gold-l);padding:14px 20px;border-radius:10px 10px 0 0;margin-top:32px;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500}
 .sh span{font-size:11px;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
 .hint{font-size:11px;color:var(--txt-l);font-style:italic;padding:12px 20px;background:var(--gold-p);border:1px solid var(--brd);border-top:none}
-
-/* Value heatmap */
 .vmap{background:var(--wht);border:1px solid var(--brd);border-top:none;overflow-x:auto;border-radius:0 0 10px 10px}
 .vmap table{width:100%;border-collapse:collapse;font-size:13px}
 .vmap th{padding:10px 8px;font-weight:500;text-align:center;font-size:11px;letter-spacing:.04em;color:var(--txt-l);border-bottom:1px solid var(--brd);white-space:nowrap}
@@ -48,8 +40,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);f
 .vi{background:#fff8e1;color:var(--orange)}
 .vs{background:#f5f5f5;color:#999}
 .vn{color:#ddd}
-
-/* Question cards */
 .qcard{background:var(--wht);border:1px solid var(--brd);border-top:none;padding:20px}
 .qcard:last-of-type{border-radius:0 0 10px 10px}
 .qcard+.qcard{border-top:1px solid #eee}
@@ -58,34 +48,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);f
 .tag-conv{background:var(--green-l);color:var(--green)}
 .tag-div{background:var(--orange-l);color:var(--orange)}
 .tag-strong{background:var(--red-l);color:var(--red)}
-
-/* Response chips */
-.resp-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
-.chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;font-size:12px;border:1px solid #e8e4dc}
-.chip-name{font-weight:500;color:var(--navy);font-size:11px;min-width:24px}
-.chip-val{color:var(--txt)}
+.resp-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;font-size:12px;border:1px solid #e8e4dc;max-width:100%}
+.chip-name{font-weight:600;color:var(--navy);font-size:11px;white-space:nowrap}
+.chip-val{color:var(--txt);word-break:break-word}
 .chip-ca{border-left:3px solid #4a90d9}
 .chip-dir{border-left:3px solid var(--green)}
 .chip-sal{border-left:3px solid var(--orange)}
-
-/* Rating bars */
 .rbar{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.rbar-name{font-size:11px;font-weight:500;color:var(--navy);min-width:24px}
+.rbar-name{font-size:11px;font-weight:500;color:var(--navy);min-width:36px}
 .rbar-track{flex:1;height:24px;background:#f0ebe3;border-radius:4px;position:relative;max-width:200px}
-.rbar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:11px;font-weight:600;color:var(--wht)}
-.rbar-1{background:#e57373;width:20%}.rbar-2{background:#ffb74d;width:40%}.rbar-3{background:#ffd54f;width:60%;color:var(--txt)}.rbar-4{background:#81c784;width:80%}.rbar-5{background:var(--green);width:100%}
-
-/* Anon toggle */
-.anon-area{text-align:center;margin-top:32px;padding:20px;background:var(--wht);border:1px solid var(--brd);border-radius:10px}
-.anon-area p{font-size:12px;color:var(--txt-l);margin-bottom:8px}
-.pwd-input{padding:8px 12px;border:1.5px solid #e8e4dc;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;width:200px}
-.pwd-input:focus{outline:none;border-color:var(--gold)}
-.pwd-btn{background:var(--navy);color:var(--gold-l);border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:8px}
-
+.rbar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:11px;font-weight:600;color:var(--wht);min-width:30px}
+.r1{background:#e57373;width:20%}.r2{background:#ffb74d;width:40%}.r3{background:#ffd54f;width:60%;color:var(--txt)}.r4{background:#81c784;width:80%}.r5{background:var(--green);width:100%}
 .loading{text-align:center;padding:60px;color:var(--txt-l);font-size:14px}
 .empty{text-align:center;padding:20px;color:var(--txt-l);font-size:13px;font-style:italic}
 .foot{text-align:center;margin-top:24px;font-size:11px;color:var(--txt-l)}
-
+#admin-toggle{position:fixed;bottom:12px;right:12px;z-index:100}
+#admin-link{font-size:11px;color:var(--txt-l);cursor:pointer;opacity:0.4;user-select:none}
+#admin-box{display:none;position:fixed;bottom:40px;right:12px;background:var(--wht);border:1px solid var(--brd);border-radius:8px;padding:12px;box-shadow:0 4px 16px rgba(0,0,0,.15);z-index:101}
+.pwd-input{padding:6px 8px;border:1.5px solid #e8e4dc;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;width:120px}
+.pwd-input:focus{outline:none;border-color:var(--gold)}
+.pwd-btn{background:var(--navy);color:var(--gold-l);border:none;padding:6px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:6px}
 @media(max-width:600px){
 .hdr{padding:24px 16px 20px}.hdr h1{font-size:22px}.ctn{padding:16px 12px 40px}
 .cbar{flex-direction:column;align-items:stretch}.cbar-left{justify-content:center}
@@ -99,241 +82,261 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);f
 <header class="hdr">
 <h1>Résultats du sondage stratégique</h1>
 <div class="sub">Association Ambroise-Paré — Mars 2026</div>
-<div class="intro">Synthèse en temps réel des réponses au questionnaire stratégique.<br>Les résultats se mettent à jour automatiquement à chaque nouvelle réponse.</div>
+<div class="intro">Synthèse en temps réel des réponses au questionnaire stratégique.<br>Les résultats se mettent à jour à chaque nouvelle réponse.</div>
 </header>
 <div class="ctn">
 <div class="loading" id="loading">Chargement des résultats...</div>
 <div id="dashboard" style="display:none">
-
-<!-- Counter -->
 <div class="cbar">
-<div class="cbar-left">
-<div class="cbar-count" id="count">0</div>
-<div class="cbar-label">réponses<br>reçues</div>
-</div>
+<div class="cbar-left"><div class="cbar-count" id="count">0</div><div class="cbar-label">réponses<br>reçues</div></div>
 <div class="cbar-bar"><div class="cbar-fill" id="bar"></div></div>
 <button class="refresh-btn" onclick="loadData()">↻ Actualiser</button>
 </div>
-
-<!-- Filters -->
 <div class="filters">
-<button class="fbtn active" data-f="all" onclick="setFilter('all',this)">Tous</button>
-<button class="fbtn" data-f="ca" onclick="setFilter('ca',this)">CA</button>
-<button class="fbtn" data-f="dir" onclick="setFilter('dir',this)">Directrices</button>
-<button class="fbtn" data-f="sal" onclick="setFilter('sal',this)">Salariés</button>
+<button class="fbtn active" onclick="setFilter('all',this)">Tous</button>
+<button class="fbtn" onclick="setFilter('ca',this)">CA</button>
+<button class="fbtn" onclick="setFilter('dir',this)">Directrices</button>
+<button class="fbtn" onclick="setFilter('sal',this)">Salariés</button>
 </div>
-
-<!-- S1: Values -->
 <div class="sh"><span>Thème 1</span>Carte des valeurs</div>
-<div class="hint">Chaque cellule indique le classement choisi par le répondant. Les convergences apparaissent quand tous choisissent la même catégorie.</div>
+<div class="hint">Chaque cellule indique le classement choisi. Les couleurs montrent les convergences.</div>
 <div class="vmap" id="vmap"></div>
-
-<!-- S2: Strategic questions -->
 <div class="sh"><span>Thème 2</span>Vision stratégique</div>
-<div class="hint">Les réponses sont comparées entre profils. 🟢 = convergence, 🟠 = divergence, 🔴 = divergence forte.</div>
+<div class="hint">🟢 Convergence — 🟠 Divergence — 🔴 Divergence forte</div>
 <div id="strategic"></div>
-
-<!-- S3: Ratings -->
-<div class="sh"><span>Thème 3</span>Évaluations (échelle 1-5)</div>
-<div class="hint">Chaque barre représente la note d'un répondant. Plus la barre est longue, plus la note est élevée.</div>
+<div class="sh"><span>Thème 3</span>Évaluations (1-5)</div>
+<div class="hint">Plus la barre est longue, plus la note est élevée.</div>
 <div id="ratings"></div>
-
-<!-- S4: New questions (directrices only) -->
-<div class="sh"><span>Thème 4</span>Synthèse — nouvelles questions</div>
-<div class="hint">Ces questions n'ont été posées qu'aux directrices et salariés. Elles apparaîtront ici dès réception des réponses.</div>
+<div class="sh"><span>Thème 4</span>Synthèse</div>
+<div class="hint">Questions complémentaires posées aux directrices et salariés.</div>
 <div id="newqs"></div>
-
-<!-- Admin -->
-<div id="admin-toggle" style="position:fixed;bottom:12px;right:12px;z-index:100">
-<span id="admin-link" style="font-size:11px;color:var(--txt-l);cursor:pointer;opacity:0.4;user-select:none" onclick="showAdmin()">admin</span>
-</div>
-<div id="admin-box" style="display:none;position:fixed;bottom:40px;right:12px;background:var(--wht);border:1px solid var(--brd);border-radius:8px;padding:12px;box-shadow:0 4px 16px rgba(0,0,0,.15);z-index:101">
-<input type="password" class="pwd-input" id="pwd" placeholder="Code" style="width:120px;font-size:12px;padding:6px 8px">
-<button class="pwd-btn" onclick="toggleAnon()" style="font-size:11px;padding:6px 12px">OK</button>
-</div>
-
 <div class="foot" id="foot"></div>
 </div>
 </div>
-
+<div id="admin-toggle"><span id="admin-link" onclick="showAdmin()">admin</span></div>
+<div id="admin-box"><input type="password" class="pwd-input" id="pwd" placeholder="Code"><button class="pwd-btn" onclick="toggleAnon()">OK</button></div>
 <script>
 const PAT='patdyq6QsSdCbJcSi.c8853671446f278320dd55e6e5be16fc5254fbb0d1990a7b455089af7acfc380';
 const BASE='appRJuqEy9HyLaWZ3';
 const CA_T='tblXysny94r1rhG6U';
 const DIR_T='tblRwVztaSXu6bkDP';
 const PWD='hadrien2026';
-
 let records=[],dirRecords=[],anon=true,filter='all';
 
 const VALS=[
-{id:'fldfUMSKbQLk7Smhe',label:'V1 — L\'humain avant le système'},
-{id:'flddIeAanZooqo53C',label:'V2 — Compétence comme acte moral'},
-{id:'fldFnNZmjnWP5aO9f',label:'V3 — Lieu de vie'},
-{id:'fld21DThOzbcZE3AD',label:'V4 — Exigence partagée'},
-{id:'fldICHKBcGBbOvRik',label:'V5 — Engagement bénévole'},
-{id:'flddCGEtgTsEqEDYk',label:'V6 — Accompagnement du sens'},
-{id:'fldpDCg2S5WKVthNS',label:'V7 — Expérimenter'},
-{id:'fldDt0e9gOUiMudEi',label:'V8 — Solidarité en actes'},
-{id:'fld2ImRyMbo1Z9Opu',label:'V9 — Santé et soin'},
-{id:'fldMtQqSIUFreHAtr',label:'V10 — Cohérence valeurs/actes'},
-{id:'fld6aAVOpWxrbvBPc',label:'V11 — Indépendance'}
+['fldfUMSKbQLk7Smhe','V1 — Humain'],['flddIeAanZooqo53C','V2 — Compétence'],
+['fldFnNZmjnWP5aO9f','V3 — Lieu de vie'],['fld21DThOzbcZE3AD','V4 — Exigence'],
+['fldICHKBcGBbOvRik','V5 — Bénévolat'],['flddCGEtgTsEqEDYk','V6 — Sens'],
+['fldpDCg2S5WKVthNS','V7 — Expérimenter'],['fldDt0e9gOUiMudEi','V8 — Solidarité'],
+['fld2ImRyMbo1Z9Opu','V9 — Santé/soin'],['fldMtQqSIUFreHAtr','V10 — Cohérence'],
+['fld6aAVOpWxrbvBPc','V11 — Indépendance']
 ];
-
 const STRAT=[
-{id:'fld1vqDFSLH6Ve6j6',title:'Ce qui rend le plus fier'},
-{id:'fldsJz0fVUtwjvtQ9',title:'Accompagnement spirituel'},
-{id:'fldZLkWvaED0sIrGm',title:'Identité protestante dans les statuts'},
-{id:'fldKEL88WvsmxhKmF',title:'Prochain président'},
-{id:'fldAU9kQgwEVRkJJI',title:'Lien EHPAD-IFSI'},
-{id:'fldBNYRWnbQq2dQSA',title:'Par quoi commencer'},
-{id:'fldu3pTv7yh4GVdQa',title:'Type de groupement'},
-{id:'fldbw9FIF1RQcSsnk',title:'Urgence temporelle'},
-{id:'fldk5L71cyyizKxjh',title:'Investissement personnel'},
-{id:'fldPfqSPihxN8WYiX',title:'Suite de la mission'},
-{id:'fldLLTvUldDGeDWE0',title:'Si l\'association disparaissait'}
+['fld1vqDFSLH6Ve6j6','Ce qui rend le plus fier'],
+['fldsJz0fVUtwjvtQ9','Accompagnement spirituel'],
+['fldZLkWvaED0sIrGm','Identité protestante'],
+['fldKEL88WvsmxhKmF','Prochain président'],
+['fldAU9kQgwEVRkJJI','Lien EHPAD-IFSI'],
+['fldBNYRWnbQq2dQSA','Par quoi commencer'],
+['fldu3pTv7yh4GVdQa','Type de groupement'],
+['fldbw9FIF1RQcSsnk','Urgence temporelle'],
+['fldk5L71cyyizKxjh','Investissement personnel'],
+['fldPfqSPihxN8WYiX','Suite de la mission'],
+['fldLLTvUldDGeDWE0','Si l\'association disparaissait']
+];
+const RATE=[
+['fldWXpbTaYIRUmmPF','Urgence renouvellement CA','Pas urgent','Priorité absolue'],
+['fldbsO2LhIS94bCgW','Gouvernance adaptée','Pas adapté','Tout à fait'],
+['fldoc4vuH9UICt6y8','Impact départ directrice','Gérable','Critique']
+];
+const NEWQ=[
+['fldJMDltsclgCHvGN','Situation stratégique actuelle'],
+['fldOvTfF8OPI4IgAm','Identité intériorisée'],
+['fld2bxylEit0Qp1Kc','Un mot pour l\'association']
 ];
 
-const RATINGS=[
-{id:'fldWXpbTaYIRUmmPF',title:'Urgence renouvellement CA',lo:'Pas urgent',hi:'Priorité absolue'},
-{id:'fldbsO2LhIS94bCgW',title:'Gouvernance adaptée aux enjeux',lo:'Pas adapté',hi:'Tout à fait'},
-{id:'fldoc4vuH9UICt6y8',title:'Impact si départ d\'une directrice',lo:'Gérable',hi:'Critique'}
-];
-
-const NEWQS=[
-{id:'fldJMDltsclgCHvGN',title:'Situation stratégique actuelle'},
-{id:'fldOvTfF8OPI4IgAm',title:'Identité intériorisée (expliquer à un proche)'},
-{id:'fld2bxylEit0Qp1Kc',title:'Un mot pour décrire l\'association'}
-];
-
-function profil(r){const f=r.fields||{};const p=f.fldGXHqMZ8ognNIw2;if(!p)return'Administrateur CA';if(typeof p==='object')return p.name||'Administrateur CA';return p}
-function profilClass(r){const p=profil(r);if(p.includes('Directrice'))return'dir';if(p.includes('Salarié'))return'sal';return'ca'}
-function name(r){
-const f=r.fields||{};
-if(anon){const pc=profilClass(r);const idx=records.filter(x=>profilClass(x)===pc).indexOf(r)+1;
-if(pc==='ca')return'CA'+idx;if(pc==='dir')return'Dir'+idx;return'Sal'+idx;}
-return f.fldCbhmXCU0lFkl3o||'?';
+// Helper: get field value from a record (handles both REST API string format and object format)
+function gv(rec,fid){
+const f=rec.fields||rec.cellValuesByFieldId||{};
+const v=f[fid];
+if(v===undefined||v===null)return null;
+if(typeof v==='object'&&v.name)return v.name;
+return v;
 }
-function chipClass(r){return'chip-'+profilClass(r)}
-function val(r,fid){const f=r.fields||{};const v=f[fid];if(v===undefined||v===null)return null;if(typeof v==='object'&&v.name)return v.name;if(typeof v==='string')return v;if(typeof v==='number')return v;return null}
-function filtered(){if(filter==='all')return records;return records.filter(r=>profilClass(r)===filter)}
+function gn(rec){
+const f=rec.fields||rec.cellValuesByFieldId||{};
+if(anon){
+const p=gp(rec);
+const pc=gpc(rec);
+const idx=records.filter(x=>gpc(x)===pc).indexOf(rec)+1;
+if(pc==='ca')return 'CA'+idx;
+if(pc==='dir')return 'Dir'+idx;
+return 'Sal'+idx;
+}
+return f.fldCbhmXCU0lFkl3o||f['Nom']||'?';
+}
+function gp(rec){
+const f=rec.fields||rec.cellValuesByFieldId||{};
+const v=f.fldGXHqMZ8ognNIw2||f['Profil répondant'];
+if(!v)return 'Administrateur CA';
+if(typeof v==='object')return v.name||'Administrateur CA';
+return v;
+}
+function gpc(rec){const p=gp(rec);if(p.includes('Directrice'))return'dir';if(p.includes('Salarié'))return'sal';return'ca'}
+function cc(rec){return'chip-'+gpc(rec)}
+function filt(){if(filter==='all')return records;return records.filter(r=>gpc(r)===filter)}
 
 async function loadData(){
 try{
 const h={'Authorization':'Bearer '+PAT};
-const res=await fetch(`https://api.airtable.com/v0/${BASE}/${CA_T}?returnFieldsByFieldId=true`,{headers:h});
-if(!res.ok){const e=await res.text();console.error('CA fetch error:',res.status,e);document.getElementById('loading').textContent='Erreur de chargement ('+res.status+')';return}
-const d=await res.json();records=d.records||[];
+// Try with returnFieldsByFieldId first
+let res=await fetch('https://api.airtable.com/v0/'+BASE+'/'+CA_T+'?returnFieldsByFieldId=true',{headers:h});
+if(!res.ok){
+// Fallback: try without returnFieldsByFieldId
+res=await fetch('https://api.airtable.com/v0/'+BASE+'/'+CA_T,{headers:h});
+}
+if(!res.ok){document.getElementById('loading').textContent='Erreur ('+res.status+')';return}
+const d=await res.json();
+records=d.records||[];
+console.log('Loaded '+records.length+' records');
+if(records.length>0){
+const firstRec=records[0];
+const f=firstRec.fields||firstRec.cellValuesByFieldId||{};
+console.log('Record keys:',Object.keys(f).slice(0,5));
+console.log('Sample field fld1vqDFSLH6Ve6j6:',f.fld1vqDFSLH6Ve6j6);
+console.log('Sample field Q2 Fierté:',f['Q2 Fierté']);
+// If fields are keyed by name (not by ID), we need to map them
+if(!f.fldCbhmXCU0lFkl3o && f['Nom']){
+console.log('Fields are keyed by NAME, not by ID. Building map...');
+records=records.map(r=>({...r,fields:mapFieldNames(r.fields||{})}));
+}
+}
 try{
-const res2=await fetch(`https://api.airtable.com/v0/${BASE}/${DIR_T}?returnFieldsByFieldId=true`,{headers:h});
+let res2=await fetch('https://api.airtable.com/v0/'+BASE+'/'+DIR_T+'?returnFieldsByFieldId=true',{headers:h});
+if(!res2.ok)res2=await fetch('https://api.airtable.com/v0/'+BASE+'/'+DIR_T,{headers:h});
 if(res2.ok){const d2=await res2.json();dirRecords=d2.records||[]}
-}catch(e2){console.warn('Dir table fetch failed:',e2)}
+}catch(e){}
 render();
-}catch(e){console.error('Load error:',e);document.getElementById('loading').innerHTML='<strong>Ce fichier doit être consulté en ligne.</strong><br><span style="font-size:12px;color:var(--txt-l)">Publiez-le sur GitHub Pages puis ouvrez le lien https://hadriensegard.github.io/...</span>'}
+}catch(e){document.getElementById('loading').innerHTML='Erreur de connexion.<br><small>'+e.message+'</small>'}
+}
+
+// Map field names to field IDs (fallback if returnFieldsByFieldId doesn't work)
+const NAME_TO_ID={
+'Nom':'fldCbhmXCU0lFkl3o','Date de réponse':'fldcJZeH1CXhoHbHs',
+'Profil répondant':'fldGXHqMZ8ognNIw2',
+'Q1 V1 Humain':'fldfUMSKbQLk7Smhe','Q1 V2 Compétence':'flddIeAanZooqo53C',
+'Q1 V3 Lieu de vie':'fldFnNZmjnWP5aO9f','Q1 V4 Exigence':'fld21DThOzbcZE3AD',
+'Q1 V5 Bénévolat':'fldICHKBcGBbOvRik','Q1 V6 Sens':'flddCGEtgTsEqEDYk',
+'Q1 V7 Expérimente':'fldpDCg2S5WKVthNS','Q1 V8 Solidarité':'fldDt0e9gOUiMudEi',
+'Q1 V9 Santé soin':'fld2ImRyMbo1Z9Opu','Q1 V10 Cohérence':'fldMtQqSIUFreHAtr',
+'Q1 V11 Indépendance':'fld6aAVOpWxrbvBPc',
+'Q2 Fierté':'fld1vqDFSLH6Ve6j6','Q3 Spirituel':'fldsJz0fVUtwjvtQ9',
+'Q4 Protestantisme statuts':'fldZLkWvaED0sIrGm','Q5 Prochain président':'fldKEL88WvsmxhKmF',
+'Q6 Lien EHPAD-IFSI':'fldAU9kQgwEVRkJJI','Q7 Par quoi commencer':'fldBNYRWnbQq2dQSA',
+'Q8 Urgence administrateurs':'fldWXpbTaYIRUmmPF','Q9 Gouvernance adaptée':'fldbsO2LhIS94bCgW',
+'Q10 Investissement personnel':'fldk5L71cyyizKxjh','Q11 Urgence temporelle':'fldbw9FIF1RQcSsnk',
+'Q12 Groupement privilégier':'fldu3pTv7yh4GVdQa','Q13 Fragilité directrice':'fldoc4vuH9UICt6y8',
+'Q14 Suite mission':'fldPfqSPihxN8WYiX','Q15 Si disparition':'fldLLTvUldDGeDWE0',
+'Q16 Situation stratégique':'fldJMDltsclgCHvGN','Q17 Identité intériorisée':'fldOvTfF8OPI4IgAm',
+'Q18 Mot unique':'fld2bxylEit0Qp1Kc','Commentaires détaillés':'fldLsYx7oTUL9NO36'
+};
+function mapFieldNames(fields){
+const mapped={};
+for(const[k,v]of Object.entries(fields)){
+const id=NAME_TO_ID[k];
+if(id)mapped[id]=v;
+else mapped[k]=v;
+}
+return mapped;
 }
 
 function render(){
 document.getElementById('loading').style.display='none';
 document.getElementById('dashboard').style.display='block';
-const recs=filtered();
+const recs=filt();
 document.getElementById('count').textContent=records.length;
 document.getElementById('bar').style.width=(records.length/10*100)+'%';
 document.getElementById('foot').textContent='Dernière actualisation : '+new Date().toLocaleString('fr-FR');
-renderValues(recs);renderStrategic(recs);renderRatings(recs);renderNew(recs);
+renderVals(recs);renderStrat(recs);renderRate(recs);renderNew(recs);
 }
 
-function renderValues(recs){
+function renderVals(recs){
 const el=document.getElementById('vmap');
-if(!recs.length){el.innerHTML='<div class="empty">Aucune réponse pour ce filtre.</div>';return}
+if(!recs.length){el.innerHTML='<div class="empty">Aucune réponse.</div>';return}
 let h='<table><thead><tr><th>Valeur</th>';
-recs.forEach(r=>{h+='<th>'+name(r)+'</th>'});
+recs.forEach(r=>h+='<th>'+gn(r)+'</th>');
 h+='</tr></thead><tbody>';
-VALS.forEach(v=>{
-h+='<tr><td>'+v.label+'</td>';
+VALS.forEach(([fid,label])=>{
+h+='<tr><td>'+label+'</td>';
 recs.forEach(r=>{
-const x=val(r,v.id);
+const x=gv(r,fid);
 if(!x)h+='<td class="vn">—</td>';
 else if(x==='Essentielle')h+='<td class="ve">Essentielle</td>';
 else if(x==='Importante')h+='<td class="vi">Importante</td>';
 else h+='<td class="vs">Secondaire</td>';
-});
-h+='</tr>';});
+});h+='</tr>';});
 h+='</tbody></table>';el.innerHTML=h;
 }
 
-function renderStrategic(recs){
+function renderStrat(recs){
 const el=document.getElementById('strategic');
-if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse pour ce filtre.</div>';return}
+if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse.</div>';return}
 let h='';
-let debugInfo=[];
-STRAT.forEach(q=>{
-const answers=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
-debugInfo.push(q.title+': '+answers.length+' réponses');
-if(!answers.length)return;
-const unique=new Set(answers.map(a=>a.v));
+STRAT.forEach(([fid,title])=>{
+const ans=recs.map(r=>({n:gn(r),v:gv(r,fid),c:cc(r)})).filter(a=>a.v);
+if(!ans.length)return;
+const u=new Set(ans.map(a=>a.v));
 let tag='';
-if(answers.length>1&&unique.size===1)tag='<span class="qcard-tag tag-conv">Convergence</span>';
-else if(answers.length>1&&unique.size===2)tag='<span class="qcard-tag tag-div">Divergence</span>';
-else if(answers.length>1&&unique.size>=3)tag='<span class="qcard-tag tag-strong">Divergence forte</span>';
-h+='<div class="qcard"><div class="qcard-title">'+q.title+tag+'</div><div class="resp-row">';
-answers.forEach(a=>{h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span><span class="chip-val">'+a.v+'</span></div>'});
-h+='</div></div>';});
-if(!h){
-h='<div class="qcard empty">Debug: '+debugInfo.join(' | ')+'<br>Record keys: '+Object.keys(recs[0]?.fields||{}).join(', ')+'</div>';
-}
-el.innerHTML=h;
+if(ans.length>1&&u.size===1)tag='<span class="qcard-tag tag-conv">Convergence</span>';
+else if(ans.length>1&&u.size===2)tag='<span class="qcard-tag tag-div">Divergence</span>';
+else if(ans.length>1&&u.size>=3)tag='<span class="qcard-tag tag-strong">Divergence forte</span>';
+h+='<div class="qcard"><div class="qcard-title">'+title+tag+'</div><div class="resp-row">';
+ans.forEach(a=>h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span> <span class="chip-val">'+a.v+'</span></div>');
+h+='</div></div>';
+});
+el.innerHTML=h||'<div class="qcard empty">Aucune réponse.</div>';
 }
 
-function renderRatings(recs){
+function renderRate(recs){
 const el=document.getElementById('ratings');
-if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse pour ce filtre.</div>';return}
+if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse.</div>';return}
 let h='';
-RATINGS.forEach(q=>{
-const answers=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
-if(!answers.length)return;
-h+='<div class="qcard"><div class="qcard-title">'+q.title+'</div>';
-h+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--txt-l);margin-bottom:8px"><span>'+q.lo+'</span><span>'+q.hi+'</span></div>';
-answers.forEach(a=>{
+RATE.forEach(([fid,title,lo,hi])=>{
+const ans=recs.map(r=>({n:gn(r),v:gv(r,fid)})).filter(a=>a.v!==null);
+if(!ans.length)return;
+h+='<div class="qcard"><div class="qcard-title">'+title+'</div>';
+h+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--txt-l);margin-bottom:8px"><span>'+lo+'</span><span>'+hi+'</span></div>';
+ans.forEach(a=>{
 const v=parseInt(a.v)||0;
-h+='<div class="rbar"><span class="rbar-name">'+a.n+'</span><div class="rbar-track"><div class="rbar-fill rbar-'+v+'">'+v+'/5</div></div></div>';
+h+='<div class="rbar"><span class="rbar-name">'+a.n+'</span><div class="rbar-track"><div class="rbar-fill r'+v+'">'+v+'/5</div></div></div>';
+});h+='</div>';
 });
-h+='</div>';});
-el.innerHTML=h||'<div class="qcard empty">Aucune réponse disponible.</div>';
+el.innerHTML=h||'<div class="qcard empty">Aucune réponse.</div>';
 }
 
 function renderNew(recs){
 const el=document.getElementById('newqs');
-const answers=recs.filter(r=>NEWQS.some(q=>val(r,q.id)));
-if(!answers.length){el.innerHTML='<div class="qcard empty">En attente des réponses des directrices et salariés.</div>';return}
 let h='';
-NEWQS.forEach(q=>{
-const ans=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
+NEWQ.forEach(([fid,title])=>{
+const ans=recs.map(r=>({n:gn(r),v:gv(r,fid),c:cc(r)})).filter(a=>a.v);
 if(!ans.length)return;
-h+='<div class="qcard"><div class="qcard-title">'+q.title+'</div><div class="resp-row">';
-ans.forEach(a=>{h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span><span class="chip-val">'+a.v+'</span></div>'});
-h+='</div></div>';});
-el.innerHTML=h;
+h+='<div class="qcard"><div class="qcard-title">'+title+'</div><div class="resp-row">';
+ans.forEach(a=>h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span> <span class="chip-val">'+a.v+'</span></div>');
+h+='</div></div>';
+});
+el.innerHTML=h||'<div class="qcard empty">En attente des réponses des directrices et salariés.</div>';
 }
 
-function setFilter(f,btn){
-filter=f;
-document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-render();
-}
-
+function setFilter(f,btn){filter=f;document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render()}
+function showAdmin(){const b=document.getElementById('admin-box');b.style.display=b.style.display==='none'?'block':'none'}
 function toggleAnon(){
 const p=document.getElementById('pwd').value;
 if(p===PWD){anon=!anon;render();document.getElementById('pwd').value='';
 document.getElementById('admin-box').style.display='none';
-document.getElementById('admin-link').textContent=anon?'admin':'✓ noms visibles';
+document.getElementById('admin-link').textContent=anon?'admin':'✓ noms';
 document.getElementById('admin-link').style.opacity=anon?'0.4':'1';
 }else{alert('Code incorrect.')}
 }
-function showAdmin(){
-const box=document.getElementById('admin-box');
-box.style.display=box.style.display==='none'?'block':'none';
-}
-
 loadData();
 </script>
 </body>
