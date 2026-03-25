@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionnaire opérationnel — Association Ambroise-Paré</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f1e35;--navy-l:#1a2f4a;--gold:#c9a84c;--gold-l:#e8c97a;--gold-p:#fdf6e3;--cream:#f8f5ef;--wht:#fff;--txt:#1a1a2e;--txt-l:#5a6575;--brd:#d5cfc0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);padding:36px 24px 28px;text-align:center}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--gold-l)}
+.hdr .sub{color:rgba(255,255,255,.5);font-size:12px;margin-top:6px;font-weight:300;letter-spacing:.04em}
+.hdr .intro{max-width:640px;margin:16px auto 0;color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
+.ctn{max-width:720px;margin:0 auto;padding:24px 20px 60px}
+.sh{background:var(--navy);color:var(--gold-l);padding:14px 20px;border-radius:10px 10px 0 0;margin-top:32px;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500}
+.sh span{font-size:11px;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+.qc{background:var(--wht);border:1px solid var(--brd);border-top:none;padding:24px 20px}
+.qc:last-child{border-radius:0 0 10px 10px}
+.qc+.qc{border-top:1px solid #eee}
+.qn{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.qt{font-size:15px;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.5}
+.qh{font-size:12px;color:var(--txt-l);margin-bottom:14px;font-style:italic}
+.opts{display:flex;flex-direction:column;gap:8px}
+.ol{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1.5px solid #e8e4dc;border-radius:8px;cursor:pointer;transition:all .15s;font-size:13px;line-height:1.5}
+.ol:hover{border-color:var(--gold);background:var(--gold-p)}
+.ol input[type="radio"]{margin-top:3px;accent-color:var(--navy);flex-shrink:0}
+.ol.sel{border-color:var(--navy);background:rgba(15,30,53,.04)}
+.lk-c{display:flex;flex-direction:column;gap:6px}
+.lk-l{display:flex;justify-content:space-between;font-size:11px;color:var(--txt-l);padding:0 4px;margin-bottom:4px}
+.lk-r{display:flex;gap:8px;justify-content:center}
+.lk-b{width:52px;height:44px;border:1.5px solid #e8e4dc;border-radius:8px;background:var(--wht);cursor:pointer;font-size:16px;font-weight:500;color:var(--txt-l);transition:all .15s;display:flex;align-items:center;justify-content:center}
+.lk-b:hover{border-color:var(--gold);background:var(--gold-p)}
+.lk-b.sel{border-color:var(--navy);background:var(--navy);color:var(--wht)}
+.mw{overflow-x:auto}
+.mx{width:100%;border-collapse:collapse;font-size:13px}
+.mx th{background:var(--navy);color:var(--gold-l);padding:10px 8px;font-weight:500;text-align:center;font-size:12px;letter-spacing:.04em}
+.mx th:first-child{text-align:left;min-width:200px;border-radius:6px 0 0 0}
+.mx th:last-child{border-radius:0 6px 0 0}
+.mx td{padding:10px 8px;border-bottom:1px solid #eee;vertical-align:middle}
+.mx td:first-child{font-weight:500;color:var(--navy);line-height:1.4}
+.mx td:not(:first-child){text-align:center}
+.mx tr:nth-child(even) td{background:rgba(245,240,232,.5)}
+.mx tr:hover td{background:var(--gold-p)}
+.mx input[type="radio"]{width:18px;height:18px;accent-color:var(--navy);cursor:pointer}
+.vd{display:block;font-weight:300;font-size:11px;color:var(--txt-l);margin-top:2px}
+.cmt{margin-top:12px}
+.cmt textarea{width:100%;padding:8px 12px;border:1.5px solid #e8e4dc;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:36px;color:var(--txt-l)}
+.cmt textarea:focus{outline:none;border-color:var(--gold);color:var(--txt)}
+.cmt textarea::placeholder{font-style:italic;font-size:11px}
+.pb{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:1000;transition:width .3s}
+.sub-s{text-align:center;margin-top:36px}
+.sub-b{background:var(--navy);color:var(--gold-l);border:none;padding:14px 48px;font-size:15px;font-weight:500;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.sub-b:hover{background:var(--navy-l);transform:translateY(-1px);box-shadow:0 4px 20px rgba(15,30,53,.2)}
+.sub-b:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.sub-n{font-size:12px;color:var(--txt-l);margin-top:12px}
+.suc{display:none;text-align:center;padding:60px 24px}
+.suc h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--navy);margin-bottom:12px}
+.suc p{color:var(--txt-l);font-size:14px}
+.cnt{position:fixed;bottom:20px;right:20px;background:var(--navy);color:var(--gold-l);padding:8px 16px;border-radius:20px;font-size:12px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:100}
+.err{color:#c62828;font-size:13px;margin-top:8px;display:none}
+.name-sel{text-align:center;padding:48px 20px}
+.name-sel h2{font-family:'Cormorant Garamond',serif;color:var(--navy);margin-bottom:20px;font-size:22px}
+.nb{display:block;width:100%;max-width:420px;margin:10px auto;padding:14px 20px;background:var(--wht);border:1.5px solid var(--navy);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--navy);cursor:pointer;transition:all .15s}
+.nb:hover{background:var(--navy);color:var(--gold-l);transform:translateY(-1px);box-shadow:0 4px 12px rgba(15,30,53,.2)}
+.hidden{display:none!important}
+@media(max-width:600px){.hdr{padding:24px 16px 20px}.hdr h1{font-size:22px}.ctn{padding:16px 12px 40px}.qc{padding:18px 14px}.lk-b{width:44px;height:38px;font-size:14px}.mx td:first-child{min-width:160px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="pb" id="progress"></div>
+<header class="hdr">
+<h1>Questionnaire opérationnel</h1>
+<div class="sub">Association Ambroise-Paré — Mars 2026</div>
+<div class="intro">Ce questionnaire complète le sondage envoyé au CA.<br>Vos réponses sont confidentielles et présentées sans attribution individuelle.<br>Un espace de commentaire libre est disponible sous chaque question.</div>
+</header>
+<div class="ctn">
+
+<div class="name-sel" id="namesel">
+<h2>Merci de vous identifier :</h2>
+<button class="nb" onclick="pick('Mme Leplan','Directrice')">Mme Leplan — Directrice EHPAD</button>
+<button class="nb" onclick="pick('Sylvie Buisine','Directrice')">Sylvie Buisine — Directrice IFSI</button>
+<button class="nb" onclick="pick('Laurent Vanostende','Salarié')">Laurent Vanostende — Comptable</button>
+</div>
+
+<div id="fc" class="hidden">
+
+<!-- T1 VALEURS -->
+<div class="sh"><span>Thème 1</span>Ce qui nous fonde</div>
+<div class="qc">
+<div class="qn">Question 1</div>
+<div class="qt">Classez chaque valeur dans l'un des trois groupes.</div>
+<div class="qh">Maximum 4 valeurs dans « Essentielle » et 4 dans « Importante ». Le reste dans « Secondaire ».</div>
+<div class="mw"><table class="mx"><thead><tr><th>Valeur</th><th>Essentielle</th><th>Importante</th><th>Secondaire</th></tr></thead><tbody>
+<tr><td>V1 — L'humain avant le système<span class="vd">Chaque résident, étudiant, soignant est une fin en soi</span></td><td><input type="radio" name="v1" value="Essentielle"></td><td><input type="radio" name="v1" value="Importante"></td><td><input type="radio" name="v1" value="Secondaire"></td></tr>
+<tr><td>V2 — La compétence comme acte moral<span class="vd">Former sérieusement, c'est soigner sérieusement</span></td><td><input type="radio" name="v2" value="Essentielle"></td><td><input type="radio" name="v2" value="Importante"></td><td><input type="radio" name="v2" value="Secondaire"></td></tr>
+<tr><td>V3 — Un lieu de vie, pas un lieu d'attente<span class="vd">L'EHPAD ancré dans le quartier et le territoire</span></td><td><input type="radio" name="v3" value="Essentielle"></td><td><input type="radio" name="v3" value="Importante"></td><td><input type="radio" name="v3" value="Secondaire"></td></tr>
+<tr><td>V4 — L'exigence partagée<span class="vd">La qualité portée de l'intérieur, pas imposée</span></td><td><input type="radio" name="v4" value="Essentielle"></td><td><input type="radio" name="v4" value="Importante"></td><td><input type="radio" name="v4" value="Secondaire"></td></tr>
+<tr><td>V5 — L'engagement bénévole comme conviction<span class="vd">Gouverner pour servir un projet, pas un titre</span></td><td><input type="radio" name="v5" value="Essentielle"></td><td><input type="radio" name="v5" value="Importante"></td><td><input type="radio" name="v5" value="Secondaire"></td></tr>
+<tr><td>V6 — L'accompagnement du sens<span class="vd">La question du sens face à la fin de vie</span></td><td><input type="radio" name="v6" value="Essentielle"></td><td><input type="radio" name="v6" value="Importante"></td><td><input type="radio" name="v6" value="Secondaire"></td></tr>
+<tr><td>V7 — Une association qui expérimente<span class="vd">Reprendre les meilleures pratiques, montrer qu'on peut faire autrement</span></td><td><input type="radio" name="v7" value="Essentielle"></td><td><input type="radio" name="v7" value="Importante"></td><td><input type="radio" name="v7" value="Secondaire"></td></tr>
+<tr><td>V8 — La solidarité en actes<span class="vd">Soigner ceux qui en ont besoin, pas seulement ceux qui en ont les moyens</span></td><td><input type="radio" name="v8" value="Essentielle"></td><td><input type="radio" name="v8" value="Importante"></td><td><input type="radio" name="v8" value="Secondaire"></td></tr>
+<tr><td>V9 — Notre périmètre : la santé et le soin<span class="vd">L'identité sectorielle guide les choix de développement</span></td><td><input type="radio" name="v9" value="Essentielle"></td><td><input type="radio" name="v9" value="Importante"></td><td><input type="radio" name="v9" value="Secondaire"></td></tr>
+<tr><td>V10 — La cohérence valeurs / actes<span class="vd">Dire ce qu'on fait, faire ce qu'on dit</span></td><td><input type="radio" name="v10" value="Essentielle"></td><td><input type="radio" name="v10" value="Importante"></td><td><input type="radio" name="v10" value="Secondaire"></td></tr>
+<tr><td>V11 — L'indépendance par la force collective<span class="vd">Se structurer en groupe pour durer sans fusionner</span></td><td><input type="radio" name="v11" value="Essentielle"></td><td><input type="radio" name="v11" value="Importante"></td><td><input type="radio" name="v11" value="Secondaire"></td></tr>
+</tbody></table></div>
+<div class="cmt"><textarea id="cq1" placeholder="Commentaire libre sur le classement des valeurs..."></textarea></div>
+</div>
+
+<div class="qc"><div class="qn">Question 2</div><div class="qt">Ce qui me rend le plus fier dans cette association, c'est :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q2" value="Qualité accompagnement résidents"> La qualité de l'accompagnement des résidents</label><label class="ol"><input type="radio" name="q2" value="Histoire centenaire et valeurs"> L'histoire centenaire et les valeurs fondatrices</label><label class="ol"><input type="radio" name="q2" value="Compétence des équipes"> La compétence des équipes</label><label class="ol"><input type="radio" name="q2" value="Indépendance"> Le fait d'être indépendant</label><label class="ol"><input type="radio" name="q2" value="Lien soigner et former"> Le lien entre soigner et former</label><label class="ol"><input type="radio" name="q2" value="Engagement CA et bénévoles"> L'engagement du CA et des bénévoles</label></div>
+<div class="cmt"><textarea id="cq2" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T2 STRUCTURES -->
+<div class="sh"><span>Thème 2</span>Nos deux structures</div>
+<div class="qc"><div class="qn">Question 3</div><div class="qt">Le lien entre l'EHPAD et l'IFSI au sein de la même association :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q3" value="Atout stratégique à renforcer"> Est un atout stratégique majeur qu'il faut renforcer</label><label class="ol"><input type="radio" name="q3" value="Atout sans effort particulier"> Est un atout mais qui fonctionne sans effort particulier</label><label class="ol"><input type="radio" name="q3" value="Existe sur le papier seulement"> Existe surtout sur le papier, pas dans la pratique quotidienne</label><label class="ol"><input type="radio" name="q3" value="Pas déterminant pour l'avenir"> N'est pas déterminant pour l'avenir de chaque structure</label></div>
+<div class="cmt"><textarea id="cq3" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 4</div><div class="qt">Par quoi l'association devrait-elle commencer :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q4" value="Projet associatif et valeurs"> Formaliser un projet associatif et des valeurs partagées</label><label class="ol"><input type="radio" name="q4" value="Rapprochement sans attendre"> Engager un rapprochement avec d'autres structures sans attendre</label><label class="ol"><input type="radio" name="q4" value="Renforcer le CA d'abord"> Renforcer le CA et la gouvernance d'abord</label><label class="ol"><input type="radio" name="q4" value="Chiffrer les scénarios financiers"> Chiffrer les scénarios financiers avant toute décision</label></div>
+<div class="cmt"><textarea id="cq4" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T3 GOUVERNANCE -->
+<div class="sh"><span>Thème 3</span>Notre gouvernance</div>
+<div class="qc"><div class="qn">Question 5</div><div class="qt">Le recrutement de nouveaux administrateurs est urgent.</div>
+<div class="lk-c"><div class="lk-l"><span>1 — Pas urgent</span><span>5 — Priorité absolue</span></div><div class="lk-r">
+<button class="lk-b" data-q="q5" data-v="1">1</button><button class="lk-b" data-q="q5" data-v="2">2</button><button class="lk-b" data-q="q5" data-v="3">3</button><button class="lk-b" data-q="q5" data-v="4">4</button><button class="lk-b" data-q="q5" data-v="5">5</button>
+</div></div>
+<div class="cmt"><textarea id="cq5" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 6</div><div class="qt">Dans un groupement, l'association devrait privilégier :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q6" value="Même secteur, mêmes valeurs"> Des structures du même secteur partageant les mêmes valeurs</label><label class="ol"><input type="radio" name="q6" value="Structures protestantes ou chrétiennes"> Des structures protestantes ou d'inspiration chrétienne</label><label class="ol"><input type="radio" name="q6" value="Territoire lillois, toute identité"> Des structures du territoire lillois, quelle que soit leur identité</label><label class="ol"><input type="radio" name="q6" value="Pas le bon moment"> Ce n'est pas le bon moment pour en parler</label></div>
+<div class="cmt"><textarea id="cq6" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 7</div><div class="qt">Si l'association n'existait plus demain, ce qui manquerait le plus au territoire :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q7" value="Qualité accompagnement résidents"> La qualité de l'accompagnement des résidents</label><label class="ol"><input type="radio" name="q7" value="Lieu de formation, valeurs humaines"> Un lieu de formation ancré dans des valeurs humaines</label><label class="ol"><input type="radio" name="q7" value="Employeur engagé"> Un employeur engagé pour ses équipes</label><label class="ol"><input type="radio" name="q7" value="Acteur associatif indépendant"> Un acteur associatif indépendant sur le territoire</label><label class="ol"><input type="radio" name="q7" value="Rien d'irremplaçable"> Rien de vraiment irremplaçable</label></div>
+<div class="cmt"><textarea id="cq7" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T4 VÉCU OPÉRATIONNEL -->
+<div class="sh"><span>Thème 4</span>Votre vécu opérationnel</div>
+<div class="qc"><div class="qn">Question 8</div><div class="qt">Le sujet que je porte le plus au quotidien sans soutien suffisant du CA :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q8" value="Relations avec les financeurs (ARS, Région, Département)"> Les relations avec les financeurs (ARS, Région, Département)</label><label class="ol"><input type="radio" name="q8" value="Recrutement et fidélisation des équipes"> Le recrutement et la fidélisation des équipes</label><label class="ol"><input type="radio" name="q8" value="Préparation des évaluations et obligations réglementaires"> La préparation des évaluations et obligations réglementaires</label><label class="ol"><input type="radio" name="q8" value="Réflexion stratégique et développement de l'établissement"> La réflexion stratégique et le développement de l'établissement</label></div>
+<div class="cmt"><textarea id="cq8" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 9</div><div class="qt">Je me sens soutenu(e) par le CA pour défendre mes positions face aux tutelles.</div>
+<div class="opts"><label class="ol"><input type="radio" name="q9" value="Tout à fait d'accord"> Tout à fait d'accord</label><label class="ol"><input type="radio" name="q9" value="Plutôt d'accord"> Plutôt d'accord</label><label class="ol"><input type="radio" name="q9" value="Plutôt pas d'accord"> Plutôt pas d'accord</label><label class="ol"><input type="radio" name="q9" value="Pas du tout d'accord"> Pas du tout d'accord</label></div>
+<div class="cmt"><textarea id="cq9" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc dir-only"><div class="qn">Question 10</div><div class="qt">Je me sens soutenu(e) pour prendre des décisions ambitieuses.</div>
+<div class="opts"><label class="ol"><input type="radio" name="q10" value="Tout à fait d'accord"> Tout à fait d'accord</label><label class="ol"><input type="radio" name="q10" value="Plutôt d'accord"> Plutôt d'accord</label><label class="ol"><input type="radio" name="q10" value="Plutôt pas d'accord"> Plutôt pas d'accord</label><label class="ol"><input type="radio" name="q10" value="Pas du tout d'accord"> Pas du tout d'accord</label></div>
+<div class="cmt"><textarea id="cq10" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 11</div><div class="qt">Je me projette sereinement dans mon poste à 3-5 ans.</div>
+<div class="opts"><label class="ol"><input type="radio" name="q11" value="Tout à fait d'accord"> Tout à fait d'accord</label><label class="ol"><input type="radio" name="q11" value="Plutôt d'accord"> Plutôt d'accord</label><label class="ol"><input type="radio" name="q11" value="Plutôt pas d'accord"> Plutôt pas d'accord</label><label class="ol"><input type="radio" name="q11" value="Pas du tout d'accord"> Pas du tout d'accord</label></div>
+<div class="cmt"><textarea id="cq11" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc dir-only"><div class="qn">Question 12</div><div class="qt">Comment voyez-vous votre rôle évoluer ?</div>
+<div class="opts"><label class="ol"><input type="radio" name="q12" value="Rester directrice du site actuel uniquement"> Rester directrice du site actuel uniquement</label><label class="ol"><input type="radio" name="q12" value="Diriger plusieurs sites si les moyens sont là"> Diriger plusieurs sites si les moyens sont là</label><label class="ol"><input type="radio" name="q12" value="Avoir un rôle de direction générale opérationnelle"> Avoir un rôle de direction générale opérationnelle</label><label class="ol"><input type="radio" name="q12" value="Je ne suis pas sûre — cela dépend des conditions"> Je ne suis pas sûr(e) — cela dépend des conditions</label></div>
+<div class="cmt"><textarea id="cq12" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- LAURENT SPECIFIC -->
+<div class="qc lau-only hidden"><div class="qn">Question 10L</div><div class="qt">Gérer la comptabilité de l'association (EHPAD + IFSI) et de 2 SCI simultanément, c'est :</div>
+<div class="opts"><label class="ol"><input type="radio" name="ql1" value="Gérable et maîtrisé avec les outils actuels"> Gérable et maîtrisé avec les outils actuels</label><label class="ol"><input type="radio" name="ql1" value="Lourd mais compensé par bonne connaissance"> Lourd mais compensé par une bonne connaissance des dossiers</label><label class="ol"><input type="radio" name="ql1" value="Trop complexe pour une seule personne"> Trop complexe pour une seule personne sans assistant dédié</label><label class="ol"><input type="radio" name="ql1" value="Acceptable mais risqué en cas d'absence"> Acceptable mais risqué en cas d'absence prolongée</label></div>
+<div class="cmt"><textarea id="cql1" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc lau-only hidden"><div class="qn">Question 11L</div><div class="qt">L'équilibre financier entre les deux activités (EHPAD et IFSI) :</div>
+<div class="opts"><label class="ol"><input type="radio" name="ql2" value="Chaque activité équilibrée de manière autonome"> Chaque activité est financièrement équilibrée de manière autonome</label><label class="ol"><input type="radio" name="ql2" value="L'une dégage un excédent pour l'autre"> L'une des deux dégage structurellement un excédent qui contribue à l'équilibre de l'autre</label><label class="ol"><input type="radio" name="ql2" value="Transferts financiers non formellement identifiés"> Des transferts financiers entre activités existent mais ne sont pas formellement identifiés</label><label class="ol"><input type="radio" name="ql2" value="Pas de comptabilité analytique séparée"> Il n'existe pas de comptabilité analytique permettant d'isoler le résultat de chaque activité</label></div>
+<div class="cmt"><textarea id="cql2" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc lau-only hidden"><div class="qn">Question 12L</div><div class="qt">Si vous deviez être absent pendant 3 mois, l'association pourrait-elle assurer la continuité comptable ?</div>
+<div class="opts"><label class="ol"><input type="radio" name="ql3" value="Oui, procédures documentées et doublées"> Oui, les procédures sont documentées et au moins une autre personne maîtrise l'ensemble</label><label class="ol"><input type="radio" name="ql3" value="Partiellement, opérations courantes seulement"> Partiellement — les opérations courantes seraient assurées mais pas le reporting réglementaire</label><label class="ol"><input type="radio" name="ql3" value="Difficilement, repose sur ma connaissance"> Difficilement — la plupart des procédures reposent sur ma connaissance personnelle</label><label class="ol"><input type="radio" name="ql3" value="Non, je suis la seule personne"> Non — je suis la seule personne à maîtriser la chaîne comptable dans son intégralité</label></div>
+<div class="cmt"><textarea id="cql3" placeholder="Commentaire libre..."></textarea></div></div>
+
+<!-- T5 SYNTHESE -->
+<div class="sh"><span>Thème 5</span>Synthèse</div>
+<div class="qc"><div class="qn">Question 13</div><div class="qt">Comment qualifieriez-vous la situation actuelle de l'association sur le plan stratégique ?</div>
+<div class="opts"><label class="ol"><input type="radio" name="q13" value="Dynamique positive, maîtrise développement"> L'association est dans une dynamique positive et maîtrise son développement</label><label class="ol"><input type="radio" name="q13" value="Stable mais transformations nécessaires"> L'association est stable mais doit engager des transformations pour préparer l'avenir</label><label class="ol"><input type="radio" name="q13" value="Défis significatifs, décisions rapides"> L'association fait face à des défis significatifs qui nécessitent des décisions rapides</label><label class="ol"><input type="radio" name="q13" value="Situation préoccupante, mesures urgentes"> L'association est dans une situation préoccupante qui appelle des mesures urgentes</label></div>
+<div class="cmt"><textarea id="cq13" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 14</div><div class="qt">Si vous deviez expliquer à un proche ce que fait cette association et pourquoi elle existe :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q14" value="Structure professionnelle EHPAD et école"> C'est une structure qui gère un EHPAD et une école d'infirmiers de façon professionnelle</label><label class="ol"><input type="radio" name="q14" value="Association protestante personnes vulnérables"> C'est une association protestante qui prend soin des personnes vulnérables depuis des décennies</label><label class="ol"><input type="radio" name="q14" value="Organisation en transition cherchant son avenir"> C'est une organisation en transition qui cherche son avenir institutionnel</label><label class="ol"><input type="radio" name="q14" value="Structure solide qui doit se réinventer"> C'est une structure solide mais qui doit se réinventer pour rester indépendante</label></div>
+<div class="cmt"><textarea id="cq14" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="qc"><div class="qn">Question 15</div><div class="qt">Si vous deviez choisir UN seul mot pour décrire l'état actuel de l'association :</div>
+<div class="opts"><label class="ol"><input type="radio" name="q15" value="Stabilité"> Stabilité</label><label class="ol"><input type="radio" name="q15" value="Transition"> Transition</label><label class="ol"><input type="radio" name="q15" value="Fragilité"> Fragilité</label><label class="ol"><input type="radio" name="q15" value="Incertitude"> Incertitude</label></div>
+<div class="cmt"><textarea id="cq15" placeholder="Commentaire libre..."></textarea></div></div>
+
+<div class="sub-s">
+<button class="sub-b" id="submitBtn" onclick="submitAll()">Envoyer mes réponses</button>
+<div class="sub-n">Vos réponses sont envoyées directement et de façon sécurisée.</div>
+<div class="err" id="errMsg"></div>
+</div>
+</div>
+
+<div class="suc" id="suc"><h2>Merci pour vos réponses.</h2><p>Elles seront synthétisées et présentées au conseil d'administration du 2 avril.<br>Vous pouvez fermer cette page.</p></div>
+<div class="cnt" id="cnt" style="display:none">0 / 15</div>
+</div>
+
+<script>
+const AIRTABLE_PAT='patdyq6QsSdCbJcSi.c8853671446f278320dd55e6e5be16fc5254fbb0d1990a7b455089af7acfc380';
+const BASE_ID='appRJuqEy9HyLaWZ3';
+const CA_TABLE='tblXysny94r1rhG6U';
+const DIR_TABLE='tblRwVztaSXu6bkDP';
+
+// CA table field IDs
+const FCA={
+nom:'fldCbhmXCU0lFkl3o',date:'fldcJZeH1CXhoHbHs',profil:'fldGXHqMZ8ognNIw2',
+v1:'fldfUMSKbQLk7Smhe',v2:'flddIeAanZooqo53C',v3:'fldFnNZmjnWP5aO9f',
+v4:'fld21DThOzbcZE3AD',v5:'fldICHKBcGBbOvRik',v6:'flddCGEtgTsEqEDYk',
+v7:'fldpDCg2S5WKVthNS',v8:'fldDt0e9gOUiMudEi',v9:'fld2ImRyMbo1Z9Opu',
+v10:'fldMtQqSIUFreHAtr',v11:'fld6aAVOpWxrbvBPc',
+q2:'fld1vqDFSLH6Ve6j6',q3:'fldAU9kQgwEVRkJJI',q4:'fldBNYRWnbQq2dQSA',
+q5:'fldWXpbTaYIRUmmPF',q6:'fldu3pTv7yh4GVdQa',q7:'fldLLTvUldDGeDWE0',
+q13:'fldJMDltsclgCHvGN',q14:'fldOvTfF8OPI4IgAm',q15:'fld2bxylEit0Qp1Kc',
+cmtAll:'fldLsYx7oTUL9NO36'
+};
+
+// Directrices table field IDs
+const FDIR={
+nom:'fld85CrcYqLWoAZUt',date:'fldGw1q510EIwAgZ7',
+q8:'fldYcsjwbi3Gte2PB',q9:'fldI7rfbwqNSTEDZZ',q10:'flda6FZyGHlqq2nU6',
+q11:'fldUvCPz3qmDsFlLk',q12:'fldW8Z0vP3ET2abvJ',
+ql1:'fldtbsGJOOltbpBpB',ql2:'fld1UjOZPqUC6lSMe',ql3:'fldoMHtdnpbhfAhnW',
+cmt:'fldiQczbylcPJjbXS'
+};
+
+let selName='',selProfil='',isLaurent=false;
+const LS={};
+
+function pick(name,profil){
+selName=name;selProfil=profil;isLaurent=name.includes('Laurent');
+document.getElementById('namesel').style.display='none';
+document.getElementById('fc').classList.remove('hidden');
+document.getElementById('cnt').style.display='block';
+document.querySelectorAll('.dir-only').forEach(el=>el.classList.toggle('hidden',isLaurent));
+document.querySelectorAll('.lau-only').forEach(el=>el.classList.toggle('hidden',!isLaurent));
+}
+
+// Radio click handler
+document.querySelectorAll('.ol input[type="radio"]').forEach(r=>{r.addEventListener('change',function(){this.closest('.opts').querySelectorAll('.ol').forEach(l=>l.classList.remove('sel'));this.closest('.ol').classList.add('sel');uc()})});
+// Likert click handler
+document.querySelectorAll('.lk-b').forEach(b=>{b.addEventListener('click',function(){const q=this.dataset.q;LS[q]=parseInt(this.dataset.v);document.querySelectorAll(`.lk-b[data-q="${q}"]`).forEach(x=>x.classList.remove('sel'));this.classList.add('sel');uc()})});
+// Matrix radio handler
+document.querySelectorAll('.mx input[type="radio"]').forEach(r=>r.addEventListener('change',uc));
+
+function uc(){
+let a=0,tot=isLaurent?15:15;
+// Values matrix
+let m=0;for(let i=1;i<=11;i++){if(document.querySelector(`input[name="v${i}"]:checked`))m++}
+if(m===11)a++;
+// Radios
+const radioQs=isLaurent?['q2','q3','q4','q6','q7','q8','q9','q11','ql1','ql2','ql3','q13','q14','q15']:['q2','q3','q4','q6','q7','q8','q9','q10','q11','q12','q13','q14','q15'];
+radioQs.forEach(n=>{if(document.querySelector(`input[name="${n}"]:checked`))a++});
+// Likert
+if(LS['q5'])a++;
+document.getElementById('cnt').textContent=a+' / '+tot;
+document.getElementById('progress').style.width=(a/tot*100)+'%';
+}
+
+async function submitAll(){
+const btn=document.getElementById('submitBtn'),err=document.getElementById('errMsg');
+err.style.display='none';btn.disabled=true;btn.textContent='Envoi en cours...';
+const g=n=>{const s=document.querySelector(`input[name="${n}"]:checked`);return s?s.value:null};
+
+try{
+// CA table record
+const caFields={};
+caFields[FCA.nom]=selName;caFields[FCA.date]=new Date().toISOString();caFields[FCA.profil]=selProfil;
+for(let i=1;i<=11;i++){const v=g('v'+i);if(v)caFields[FCA['v'+i]]=v}
+const v2=g('q2');if(v2)caFields[FCA.q2]=v2;
+const v3=g('q3');if(v3)caFields[FCA.q3]=v3;
+const v4=g('q4');if(v4)caFields[FCA.q4]=v4;
+if(LS['q5'])caFields[FCA.q5]=LS['q5'];
+const v6=g('q6');if(v6)caFields[FCA.q6]=v6;
+const v7=g('q7');if(v7)caFields[FCA.q7]=v7;
+const v13=g('q13');if(v13)caFields[FCA.q13]=v13;
+const v14=g('q14');if(v14)caFields[FCA.q14]=v14;
+const v15=g('q15');if(v15)caFields[FCA.q15]=v15;
+// Comments
+const cmts=[];
+for(let i=1;i<=15;i++){const el=document.getElementById('cq'+i);if(el&&el.value.trim())cmts.push('Q'+i+': '+el.value.trim())}
+['ql1','ql2','ql3'].forEach(n=>{const el=document.getElementById('c'+n);if(el&&el.value.trim())cmts.push(n.toUpperCase()+': '+el.value.trim())});
+if(cmts.length)caFields[FCA.cmtAll]=cmts.join('\n---\n');
+
+await fetch(`https://api.airtable.com/v0/${BASE_ID}/${CA_TABLE}`,{
+method:'POST',headers:{'Authorization':`Bearer ${AIRTABLE_PAT}`,'Content-Type':'application/json'},
+body:JSON.stringify({records:[{fields:caFields}]})
+});
+
+// Directrices table record
+const dirFields={};
+dirFields[FDIR.nom]=selName;dirFields[FDIR.date]=new Date().toISOString();
+const v8=g('q8');if(v8)dirFields[FDIR.q8]=v8;
+const v9=g('q9');if(v9)dirFields[FDIR.q9]=v9;
+if(!isLaurent){
+const v10=g('q10');if(v10)dirFields[FDIR.q10]=v10;
+const v11=g('q11');if(v11)dirFields[FDIR.q11]=v11;
+const v12=g('q12');if(v12)dirFields[FDIR.q12]=v12;
+} else {
+const vl1=g('ql1');if(vl1)dirFields[FDIR.ql1]=vl1;
+const vl2=g('ql2');if(vl2)dirFields[FDIR.ql2]=vl2;
+const vl3=g('ql3');if(vl3)dirFields[FDIR.ql3]=vl3;
+}
+const dirCmts=[];
+['cq8','cq9','cq10','cq11','cq12','cql1','cql2','cql3'].forEach(id=>{const el=document.getElementById(id);if(el&&el.value.trim())dirCmts.push(id+': '+el.value.trim())});
+if(dirCmts.length)dirFields[FDIR.cmt]=dirCmts.join('\n---\n');
+
+await fetch(`https://api.airtable.com/v0/${BASE_ID}/${DIR_TABLE}`,{
+method:'POST',headers:{'Authorization':`Bearer ${AIRTABLE_PAT}`,'Content-Type':'application/json'},
+body:JSON.stringify({records:[{fields:dirFields}],typecast:true})
+});
+
+document.getElementById('fc').style.display='none';
+document.getElementById('cnt').style.display='none';
+document.getElementById('suc').style.display='block';
+}catch(e){err.textContent='Erreur : '+e.message;err.style.display='block';btn.disabled=false;btn.textContent='Envoyer mes réponses'}
+}
+</script>
+</body>
+</html>
