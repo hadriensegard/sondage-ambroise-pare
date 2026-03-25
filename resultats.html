@@ -205,25 +205,26 @@ const NEWQS=[
 {id:'fld2bxylEit0Qp1Kc',title:'Un mot pour décrire l\'association'}
 ];
 
-function profil(r){const p=r.cellValuesByFieldId?.fldGXHqMZ8ognNIw2;return p?.name||'Administrateur CA'}
+function profil(r){const f=r.fields||{};const p=f.fldGXHqMZ8ognNIw2;if(!p)return'Administrateur CA';if(typeof p==='object')return p.name||'Administrateur CA';return p}
 function profilClass(r){const p=profil(r);if(p.includes('Directrice'))return'dir';if(p.includes('Salarié'))return'sal';return'ca'}
 function name(r){
-if(anon){const p=profil(r);const pc=profilClass(r);const idx=records.filter(x=>profilClass(x)===pc).indexOf(r)+1;
+const f=r.fields||{};
+if(anon){const pc=profilClass(r);const idx=records.filter(x=>profilClass(x)===pc).indexOf(r)+1;
 if(pc==='ca')return'CA'+idx;if(pc==='dir')return'Dir'+idx;return'Sal'+idx;}
-return r.cellValuesByFieldId?.fldCbhmXCU0lFkl3o||'?';
+return f.fldCbhmXCU0lFkl3o||'?';
 }
 function chipClass(r){return'chip-'+profilClass(r)}
-function val(r,fid){const v=r.cellValuesByFieldId?.[fid];if(!v)return null;if(typeof v==='object')return v.name;return v}
+function val(r,fid){const f=r.fields||{};const v=f[fid];if(v===undefined||v===null)return null;if(typeof v==='object'&&v.name)return v.name;if(typeof v==='string')return v;if(typeof v==='number')return v;return null}
 function filtered(){if(filter==='all')return records;return records.filter(r=>profilClass(r)===filter)}
 
 async function loadData(){
 try{
 const h={'Authorization':'Bearer '+PAT};
-const res=await fetch(`https://api.airtable.com/v0/${BASE}/${CA_T}`,{headers:h});
+const res=await fetch(`https://api.airtable.com/v0/${BASE}/${CA_T}?returnFieldsByFieldId=true`,{headers:h});
 if(!res.ok){const e=await res.text();console.error('CA fetch error:',res.status,e);document.getElementById('loading').textContent='Erreur de chargement ('+res.status+')';return}
 const d=await res.json();records=d.records||[];
 try{
-const res2=await fetch(`https://api.airtable.com/v0/${BASE}/${DIR_T}`,{headers:h});
+const res2=await fetch(`https://api.airtable.com/v0/${BASE}/${DIR_T}?returnFieldsByFieldId=true`,{headers:h});
 if(res2.ok){const d2=await res2.json();dirRecords=d2.records||[]}
 }catch(e2){console.warn('Dir table fetch failed:',e2)}
 render();
@@ -263,18 +264,23 @@ function renderStrategic(recs){
 const el=document.getElementById('strategic');
 if(!recs.length){el.innerHTML='<div class="qcard empty">Aucune réponse pour ce filtre.</div>';return}
 let h='';
+let debugInfo=[];
 STRAT.forEach(q=>{
 const answers=recs.map(r=>({n:name(r),v:val(r,q.id),c:chipClass(r)})).filter(a=>a.v);
+debugInfo.push(q.title+': '+answers.length+' réponses');
 if(!answers.length)return;
 const unique=new Set(answers.map(a=>a.v));
 let tag='';
-if(unique.size===1)tag='<span class="qcard-tag tag-conv">Convergence</span>';
-else if(unique.size===2)tag='<span class="qcard-tag tag-div">Divergence</span>';
-else if(unique.size>=3)tag='<span class="qcard-tag tag-strong">Divergence forte</span>';
+if(answers.length>1&&unique.size===1)tag='<span class="qcard-tag tag-conv">Convergence</span>';
+else if(answers.length>1&&unique.size===2)tag='<span class="qcard-tag tag-div">Divergence</span>';
+else if(answers.length>1&&unique.size>=3)tag='<span class="qcard-tag tag-strong">Divergence forte</span>';
 h+='<div class="qcard"><div class="qcard-title">'+q.title+tag+'</div><div class="resp-row">';
 answers.forEach(a=>{h+='<div class="chip '+a.c+'"><span class="chip-name">'+a.n+'</span><span class="chip-val">'+a.v+'</span></div>'});
 h+='</div></div>';});
-el.innerHTML=h||'<div class="qcard empty">Aucune réponse disponible.</div>';
+if(!h){
+h='<div class="qcard empty">Debug: '+debugInfo.join(' | ')+'<br>Record keys: '+Object.keys(recs[0]?.fields||{}).join(', ')+'</div>';
+}
+el.innerHTML=h;
 }
 
 function renderRatings(recs){
